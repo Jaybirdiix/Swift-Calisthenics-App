@@ -1,24 +1,18 @@
-//
-//  ContentView.swift
-//  New Project
-//
-//  Created by Celeste van Dokkum on 8/6/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @StateObject private var viewModel = WorkoutViewModel()
 
-#Preview {
-    ContentView()
+    var body: some View {
+        TabView {
+            ExerciseListView(viewModel: viewModel)
+                .tabItem { Label("Exercises", systemImage: "list.bullet") }
+
+            WorkoutGeneratorView(viewModel: viewModel)
+                .tabItem { Label("Workout", systemImage: "bolt.fill") }
+
+            SkillProgressionsView()
+                .tabItem { Label("Skill Lists", systemImage: "list.bullet.rectangle") }
+        }
+    }
 }
