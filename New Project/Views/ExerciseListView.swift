@@ -25,6 +25,10 @@ struct ExerciseListView: View {
 
     var body: some View {
         NavigationView {
+//            Button("🧨 Reset Skill Progressions") {
+//                UserDefaults.standard.removeObject(forKey: "skillProgressions.v1")
+//            }
+
             List {
                 ForEach(filteredExercises) { exercise in
                     NavigationLink(destination: ExerciseDetailView(exercise: exercise)) {

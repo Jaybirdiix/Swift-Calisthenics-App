@@ -430,12 +430,13 @@ struct SkillProgressionsView: View {
                         ProgressionStep(name: "Wall Headstand"),
                         ProgressionStep(name: "Wall Handstand"),
                         ProgressionStep(name: "Handstand"),
-                        ProgressionStep(name: "Wall HS Push-Up Negative"),
-                        ProgressionStep(name: "Wall HS Push-Up"),
-                        ProgressionStep(name: "Headstand Push-Up"),
-                        ProgressionStep(name: "Handstand Push-Up"),
-                        ProgressionStep(name: "Ring Handstand Push-Up"),
-                        ProgressionStep(name: "RTO L‑Sit Handstand Push-Up")
+                        ProgressionStep(name: "Press Handstand", note: "optional at this stage"),
+                        ProgressionStep(name: "Wall HS Push Up Negative"),
+                        ProgressionStep(name: "Wall HS Push Up"),
+                        ProgressionStep(name: "Headstand Push Up"),
+                        ProgressionStep(name: "Handstand Push Up"),
+                        ProgressionStep(name: "Ring Handstand Push Up"),
+                        ProgressionStep(name: "RTO L‑Sit Handstand Push Up")
                     ]
                 ),
 
@@ -509,36 +510,36 @@ struct SkillProgressionsView: View {
             // =========================
             .horizontalPush: [
 
-                // PUSH UP (floor)
+                // Push Up (floor)
                 Progression(
-                    title: "Push-Up",
+                    title: "Push Up",
                     steps: [
-                        ProgressionStep(name: "Incline Push-Up"),
-                        ProgressionStep(name: "Push-Up"),
-                        ProgressionStep(name: "Diamond Push-Up"),
-                        ProgressionStep(name: "Archer Push-Up")
+                        ProgressionStep(name: "Incline Push Up"),
+                        ProgressionStep(name: "Push Up"),
+                        ProgressionStep(name: "Diamond Push Up"),
+                        ProgressionStep(name: "Archer Push Up")
                     ]
                 ),
 
-                // RING PUSH UP
+                // RING Push Up
                 Progression(
-                    title: "Ring Push-Up",
+                    title: "Ring Push Up",
                     steps: [
-                        ProgressionStep(name: "Ring Push-Up"),
-                        ProgressionStep(name: "Ring Wide Push-Up"),
-                        ProgressionStep(name: "RTO Push-Up"),
-                        ProgressionStep(name: "RTO Archer Push-Up")
+                        ProgressionStep(name: "Ring Push Up"),
+                        ProgressionStep(name: "Ring Wide Push Up"),
+                        ProgressionStep(name: "RTO Push Up"),
+                        ProgressionStep(name: "RTO Archer Push Up")
                     ]
                 ),
 
-                // PSEUDO PLANCHE PUSH UP
+                // PSEUDO PLANCHE Push Up
                 Progression(
-                    title: "Pseudo Planche Push-Up",
+                    title: "Pseudo Planche Push Up",
                     steps: [
-                        ProgressionStep(name: "PP Push-Up"),
-                        ProgressionStep(name: "Ring PP Push-Up"),
-                        ProgressionStep(name: "Wall PP Push-Up"),
-                        ProgressionStep(name: "Ring Wall PP Push-Up")
+                        ProgressionStep(name: "Pseudo Planche Push Up"),
+                        ProgressionStep(name: "Ring Pseudo Planche Push Up"),
+                        ProgressionStep(name: "Wall Pseudo Planche Push Up"),
+                        ProgressionStep(name: "Ring Wall Pseudo Planche Push Up")
                     ]
                 ),
 
@@ -552,13 +553,13 @@ struct SkillProgressionsView: View {
                     ]
                 ),
                 
-                // ONE ARM PUSH UP
+                // ONE ARM Push Up
                 Progression(
-                    title: "One Arm Push-Up",
+                    title: "One Arm Push Up",
                     steps: [
-                        ProgressionStep(name: "Incline One Arm Push-Up"),
-                        ProgressionStep(name: "Straddle One Arm Push-Up"),
-                        ProgressionStep(name: "One Arm Push-Up")
+                        ProgressionStep(name: "Incline One Arm Push Up"),
+                        ProgressionStep(name: "Straddle One Arm Push Up"),
+                        ProgressionStep(name: "One Arm Push Up")
                     ]
                 ),
 
@@ -592,21 +593,21 @@ struct SkillProgressionsView: View {
                 Progression(
                     title: "Maltese",
                     steps: [
-                        ProgressionStep(name: "Ring Wall Maltese Push-Up"),
-                        ProgressionStep(name: "Wall Maltese Push-Up"),
-                        ProgressionStep(name: "Ring Maltese Push-Up"),
+                        ProgressionStep(name: "Ring Wall Maltese Push Up"),
+                        ProgressionStep(name: "Wall Maltese Push Up"),
+                        ProgressionStep(name: "Ring Maltese Push Up"),
                         ProgressionStep(name: "Maltese")
                     ]
                 ),
 
-                // PLANche PUSH UPS
+                // PLANche Push UpS
                 Progression(
-                    title: "Planche Push-Up",
+                    title: "Planche Push Up",
                     steps: [
-                        ProgressionStep(name: "Tuck Planche Push-Up"),
-                        ProgressionStep(name: "Advanced Tuck Planche Push-Up"),
-                        ProgressionStep(name: "Straddle Planche Push-Up"),
-                        ProgressionStep(name: "Planche Push-Up")
+                        ProgressionStep(name: "Tuck Planche Push Up"),
+                        ProgressionStep(name: "Advanced Tuck Planche Push Up"),
+                        ProgressionStep(name: "Straddle Planche Push Up"),
+                        ProgressionStep(name: "Planche Push Up")
                     ]
                 ),
 

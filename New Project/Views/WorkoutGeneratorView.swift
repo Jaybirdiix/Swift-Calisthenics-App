@@ -49,7 +49,7 @@ struct WorkoutGeneratorView: View {
             .disabled(!viewModel.selectedSkills.isEmpty)
         }
     }
-
+    
 
     struct SkillSection: View {
         @ObservedObject var viewModel: WorkoutViewModel

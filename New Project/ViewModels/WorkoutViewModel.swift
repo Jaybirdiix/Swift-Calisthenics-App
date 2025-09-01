@@ -40,6 +40,7 @@ class WorkoutViewModel: ObservableObject {
         print("✅ Loaded \(decoded.count) exercises")
         self.allExercises = decoded
     }
+    
 
     
     // helper function for generateWorkout
@@ -54,7 +55,7 @@ class WorkoutViewModel: ObservableObject {
         return score
     }
 
-    func generateWorkout(count: Int = 4) {
+    func generateWorkout(count: Int = 8) {
         defer {
             if selectedSkills.count != 1 { trainingFocusScores = [:] }
         }
@@ -76,6 +77,9 @@ class WorkoutViewModel: ObservableObject {
 
             // Prioritize by score, then mix up the top pool so each tap varies
             let unlockedSkills = unlockedSkillsFromProgressions()
+            
+            print("Unlocked:", unlockedSkillsFromProgressions())
+
 
             let eligibleExercises = allExercises.filter { ex in
                 ex.requiredSkills.allSatisfy { unlockedSkills.contains($0) }
@@ -108,9 +112,15 @@ class WorkoutViewModel: ObservableObject {
             return
         }
 
-        // Fallback: muscle-based
+        // Fallback: muscle-based, filtered by unlocked skills
+        let unlockedSkills = unlockedSkillsFromProgressions()
         let muscleSet = Set(selectedMuscles)
-        generatedWorkout = allExercises
+
+        let eligibleExercises = allExercises.filter { ex in
+            ex.requiredSkills.allSatisfy { unlockedSkills.contains($0) }
+        }
+
+        generatedWorkout = eligibleExercises
             .filter { ex in
                 muscleSet.isEmpty
                 ? true
@@ -119,6 +129,7 @@ class WorkoutViewModel: ObservableObject {
             .shuffled()
             .prefix(count)
             .map { $0 }
+
     }
 
 
@@ -193,6 +204,10 @@ class WorkoutViewModel: ObservableObject {
                 }
             }
         }
+        
+//        print("Unlocked:", unlockedSkillsFromProgressions())
+
+        
         return unlocked
     }
 
