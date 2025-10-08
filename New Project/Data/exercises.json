@@ -1,33 +1,34 @@
 [
   {
     "name": "360 Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 4,
+    "description": "Explosive plyometric push-up where you launch off the floor and rotate 360° in the air before landing back into the next rep. Extremely advanced; prioritize safe landing and shoulder integrity.",
+    "difficulty": 8,
     "muscles": {
       "primary": [
-        "Anterior Deltoid",
         "Pectoralis Major",
+        "Anterior Deltoid",
         "Triceps Brachii"
       ],
       "secondary": [
+        "Serratus Anterior",
         "Rectus Abdominis",
-        "Serratus Anterior"
+        "Obliques"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors",
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
+        "Forearm Extensors"
       ]
     },
-    "reps": "360 Push Up \u2013 8 / 12 / 20",
-    "requiredSkills": []
+    "reps": "360 Push Up – 3 / 5 / 8",
+    "requiredSkills": [
+      "Clap Push Up",
+      "Archer Push Up"
+    ]
   },
   {
     "name": "Advanced Tuck Planche",
-    "description": "An advanced static hold where the body is held parallel to the ground using only the hands, requiring extreme shoulder, core, and arm strength.",
-    "difficulty": 3,
+    "description": "Isometric planche progression with knees close to chest but hips opened relative to shoulders. Shoulders protracted and wrists under or slightly behind hips.",
+    "difficulty": 7,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -46,87 +47,88 @@
         "Sartorius"
       ]
     },
-    "reps": "Advanced Tuck Planche \u2013 5s / 10s / 15s",
+    "reps": "Advanced Tuck Planche – 10s / 20s / 30s",
     "requiredSkills": [
-      "Advanced Tuck Planche"
+      "Tuck Planche",
+      "Planche Lean",
+      "Pseudo Planche Push Up"
     ]
   },
   {
     "name": "Arch Hold",
-    "description": "The opposite of the hollow hold, lying on your stomach with arms and legs lifted to strengthen posterior chain muscles.",
+    "description": "Prone posterior-chain hold: squeeze glutes, lift chest, arms, and thighs off the floor while keeping neck neutral. The opposite of a hollow hold.",
     "difficulty": 3,
     "muscles": {
       "primary": [
-        "Rectus Abdominis"
+        "Erector Spinae",
+        "Gluteus Maximus",
+        "Hamstrings"
       ],
       "secondary": [
-        "Obliques"
+        "Lower Trapezius",
+        "Posterior Deltoid"
       ],
       "tertiary": [
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
+        "Calves"
       ]
     },
-    "reps": "Arch Hold \u2013 10s / 20s / 30s",
+    "reps": "Arch Hold – 20s / 30s / 40s",
     "requiredSkills": []
   },
   {
     "name": "Archer Pull Up",
-    "description": "A vertical pulling movement where you lift your body until your chin is above a bar using your back and arm muscles.",
-    "difficulty": 3,
+    "description": "Unilateral pull-up variation: pull toward one hand while the opposite arm remains extended, shifting most load to one side. Alternate sides each rep.",
+    "difficulty": 6,
     "muscles": {
       "primary": [
-        "Biceps Brachii",
-        "Latissimus Dorsi"
+        "Latissimus Dorsi",
+        "Biceps Brachii"
       ],
       "secondary": [
-        "Lower Trapezius",
-        "Middle Trapezius",
         "Rhomboids",
-        "Upper Trapezius"
+        "Middle Trapezius",
+        "Lower Trapezius"
       ],
       "tertiary": [
+        "Forearm Flexors",
         "Forearm Extensors",
-        "Forearm Flexors"
+        "Posterior Deltoid"
       ]
     },
-    "reps": "Archer Pull Up \u2013 5 / 8 / 12",
+    "reps": "Archer Pull Up – 3 / 5 / 8",
     "requiredSkills": [
-      "Archer Pull Up"
+      "Pull Up"
     ]
   },
   {
     "name": "Archer Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 3,
+    "description": "Wide asymmetric push-up: one arm bends while the other remains extended, shifting most of the load to the bent side. Progression toward one-arm push-ups.",
+    "difficulty": 5,
     "muscles": {
       "primary": [
-        "Anterior Deltoid",
         "Pectoralis Major",
+        "Anterior Deltoid",
         "Triceps Brachii"
       ],
       "secondary": [
+        "Serratus Anterior",
         "Rectus Abdominis",
-        "Serratus Anterior"
+        "Obliques"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors",
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
+        "Forearm Extensors"
       ]
     },
-    "reps": "Archer Push Up \u2013 8 / 12 / 20",
+    "reps": "Archer Push Up – 6 / 10 / 14",
     "requiredSkills": [
       "Archer Push Up"
     ]
   },
   {
     "name": "Back Lever",
-    "description": "An advanced static hold where the body is extended horizontally facing downward, held by the arms behind the back on rings or a bar.",
-    "difficulty": 6,
+    "description": "Isometric hold on rings or bar with body facing down, hips extended, and shoulders in full extension. Keep a posterior pelvic tilt to protect the lower back.",
+    "difficulty": 7,
     "muscles": {
       "primary": [
         "Latissimus Dorsi",
@@ -144,15 +146,17 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Back Lever \u2013 10s / 20s / 30s",
+    "reps": "Back Lever – 10s / 20s / 30s",
     "requiredSkills": [
-      "Back Lever"
+      "Skin the Cat",
+      "Pull Up",
+      "Hollow Body Hold"
     ]
   },
   {
     "name": "Back Roll to Handstand",
-    "description": "A vertical inversion supported by the hands with the body straight overhead, requiring balance, shoulder strength, and wrist stability.",
-    "difficulty": 6,
+    "description": "Gymnastics skill: from a squat or pike, roll backward onto shoulders and use momentum plus a press to arrive in a handstand with locked elbows.",
+    "difficulty": 7,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -173,12 +177,12 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Back Roll to Handstand \u2013 20s / 40s / 60s",
+    "reps": "Back Roll to Handstand – 3 / 5 / 8",
     "requiredSkills": []
   },
   {
     "name": "Bar Kips",
-    "description": "A dynamic movement on a bar where momentum is used to lift the body up and over, commonly used in bar flow and CrossFit transitions.",
+    "description": "Dynamic beat/kipping swing on a bar generating momentum to transition from hang to support on top of the bar. Keep hollow↔arch rhythm tight.",
     "difficulty": 6,
     "muscles": {
       "primary": [
@@ -200,13 +204,13 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Bar Kips \u2013 5 / 10 / 15",
+    "reps": "Bar Kips – 5 / 10 / 15",
     "requiredSkills": []
   },
   {
     "name": "Cartwheel",
-    "description": "A lateral acrobatic movement where the body rotates sideways with hands and feet touching the ground in sequence.",
-    "difficulty": 6,
+    "description": "Lateral acrobatic move: place hands sequentially on the floor and rotate the body sideways, landing on the opposite foot. Emphasizes spatial awareness and shoulder loading.",
+    "difficulty": 4,
     "muscles": {
       "primary": [
         "Iliopsoas",
@@ -227,37 +231,35 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Cartwheel \u2013 8 / 12 / 20",
+    "reps": "Cartwheel – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
     "name": "Clap Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 4,
+    "description": "Plyometric push-up exploding off the floor to clap hands before returning to the ground. Land softly with elbows slightly bent.",
+    "difficulty": 5,
     "muscles": {
       "primary": [
-        "Anterior Deltoid",
         "Pectoralis Major",
+        "Anterior Deltoid",
         "Triceps Brachii"
       ],
       "secondary": [
+        "Serratus Anterior",
         "Rectus Abdominis",
-        "Serratus Anterior"
+        "Obliques"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors",
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
+        "Forearm Extensors"
       ]
     },
-    "reps": "Clap Push Up \u2013 8 / 12 / 20",
+    "reps": "Clap Push Up – 5 / 8 / 12",
     "requiredSkills": []
   },
   {
     "name": "Crow Pose",
-    "description": "A beginner balance pose where the knees rest on the elbows while balancing on the hands, used to develop control for planche or handstand.",
+    "description": "Arm-balance with knees resting high on triceps, elbows bent, and shoulders protracted. Look slightly forward to maintain balance.",
     "difficulty": 3,
     "muscles": {
       "primary": [
@@ -275,40 +277,38 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Crow Pose \u2013 10s / 20s / 30s",
+    "reps": "Crow Pose – 10s / 20s / 30s",
     "requiredSkills": []
   },
   {
     "name": "Diamond Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
+    "description": "Close-grip push-up with hands under the sternum forming a diamond shape. Increases triceps and sternal-pec demand.",
     "difficulty": 4,
     "muscles": {
       "primary": [
-        "Anterior Deltoid",
         "Pectoralis Major",
+        "Anterior Deltoid",
         "Triceps Brachii"
       ],
       "secondary": [
+        "Serratus Anterior",
         "Rectus Abdominis",
-        "Serratus Anterior"
+        "Obliques"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors",
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
+        "Forearm Extensors"
       ]
     },
-    "reps": "Diamond Push Up \u2013 8 / 12 / 20",
+    "reps": "Diamond Push Up – 8 / 12 / 20",
     "requiredSkills": [
       "Diamond Push Up"
     ]
   },
   {
     "name": "Dragon Flag",
-    "description": "A core-intensive movement where the body is kept straight and lowered/raised while supported only by the upper back and shoulders.",
-    "difficulty": 7,
+    "description": "Advanced core lever made famous by Bruce Lee: from shoulders-on-bench position, keep body rigid as you lower and raise as one unit without hip break.",
+    "difficulty": 8,
     "muscles": {
       "primary": [
         "Latissimus Dorsi",
@@ -326,14 +326,14 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Dragon Flag \u2013 10 / 20 / 30",
+    "reps": "Dragon Flag – 3 / 5 / 8",
     "requiredSkills": [
       "Dragon Flag"
     ]
   },
   {
     "name": "Elbow Lever",
-    "description": "A balance skill where the body is supported horizontally on bent elbows, typically with the hands on the floor and torso resting on the arms.",
+    "description": "Prone-facing balance with elbows resting on abdomen/hips and hands on the floor; body held parallel to the ground.",
     "difficulty": 4,
     "muscles": {
       "primary": [
@@ -353,15 +353,15 @@
         "Sartorius"
       ]
     },
-    "reps": "Elbow Lever \u2013 10s / 20s / 30s",
+    "reps": "Elbow Lever – 10s / 20s / 30s",
     "requiredSkills": [
       "Elbow Lever"
     ]
   },
   {
     "name": "Elbow Stand",
-    "description": "An inversion where the body is held vertically in the air, supported by the forearms and hands on the ground, requiring balance and core strength.",
-    "difficulty": 6,
+    "description": "Forearm-supported inversion (pincha mayurasana). Shoulders stacked over elbows with active scapular elevation and a neutral ribcage.",
+    "difficulty": 5,
     "muscles": {
       "primary": [
         "Obliques",
@@ -378,36 +378,38 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Elbow Stand \u2013 10s / 20s / 30s",
+    "reps": "Elbow Stand – 10s / 20s / 30s",
     "requiredSkills": []
   },
   {
     "name": "Explosive Pull Up",
-    "description": "A vertical pulling movement where you lift your body until your chin is above a bar using your back and arm muscles.",
+    "description": "Power pull-up aiming to pull the bar to chest or lower sternum. Useful for muscle-up preparation.",
     "difficulty": 6,
     "muscles": {
       "primary": [
-        "Biceps Brachii",
-        "Latissimus Dorsi"
+        "Latissimus Dorsi",
+        "Biceps Brachii"
       ],
       "secondary": [
-        "Lower Trapezius",
-        "Middle Trapezius",
         "Rhomboids",
-        "Upper Trapezius"
+        "Middle Trapezius",
+        "Lower Trapezius"
       ],
       "tertiary": [
+        "Forearm Flexors",
         "Forearm Extensors",
-        "Forearm Flexors"
+        "Posterior Deltoid"
       ]
     },
-    "reps": "Explosive Pull Up \u2013 5 / 8 / 12",
-    "requiredSkills": ["Pull Up"]
+    "reps": "Explosive Pull Up – 3 / 5 / 8",
+    "requiredSkills": [
+      "Pull Up"
+    ]
   },
   {
     "name": "Freestanding Handstand Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 4,
+    "description": "Strict handstand push-up performed without wall support. Requires balance plus overhead pressing strength.",
+    "difficulty": 9,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -426,13 +428,16 @@
         "Sartorius"
       ]
     },
-    "reps": "Freestanding Handstand Push Up \u2013 8 / 12 / 20",
-    "requiredSkills": []
+    "reps": "Freestanding Handstand Push Up – 1 / 3 / 5",
+    "requiredSkills": [
+      "Handstand",
+      "Wall Handstand Push Up"
+    ]
   },
   {
     "name": "Front Lever",
-    "description": "A bodyweight or weighted movement used in calisthenics to develop strength, balance, or control.",
-    "difficulty": 7,
+    "description": "Isometric hold on rings or bar with body facing up, hips extended, and torso parallel to ground. Maintain hollow body and shoulder depression.",
+    "difficulty": 8,
     "muscles": {
       "primary": [
         "Latissimus Dorsi",
@@ -450,38 +455,42 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Front Lever \u2013 10s / 20s / 30s",
+    "reps": "Front Lever – 10s / 20s / 30s",
+    "requiredSkills": [
+      "Skin the Cat",
+      "Pull Up",
+      "Hollow Body Hold"
+    ]
+  },
+  {
+    "name": "Front Lever Pull Up",
+    "description": "Pull-ups performed while holding a front lever body line. Small ROM counts—quality before quantity.",
+    "difficulty": 9,
+    "muscles": {
+      "primary": [
+        "Latissimus Dorsi",
+        "Obliques",
+        "Rectus Abdominis",
+        "Transversus Abdominis"
+      ],
+      "secondary": [
+        "Gluteus Maximus",
+        "Gluteus Medius",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors"
+      ]
+    },
+    "reps": "Front Lever Pull Up – 3 / 5 / 8",
     "requiredSkills": [
       "Front Lever"
     ]
   },
   {
-    "name": "Front Lever Pull Up",
-    "description": "A vertical pulling movement where you lift your body until your chin is above a bar using your back and arm muscles.",
-    "difficulty": 7,
-    "muscles": {
-      "primary": [
-        "Latissimus Dorsi",
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
-      ],
-      "secondary": [
-        "Gluteus Maximus",
-        "Gluteus Medius",
-        "Posterior Deltoid"
-      ],
-      "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
-      ]
-    },
-    "reps": "Front Lever Pull Up \u2013 5 / 8 / 12",
-    "requiredSkills": []
-  },
-  {
     "name": "Handstand",
-    "description": "A vertical inversion supported by the hands with the body straight overhead, requiring balance, shoulder strength, and wrist stability.",
+    "description": "Inversion balanced on hands with elbows locked, shoulders elevated, ribs stacked, and posterior pelvic tilt. Practice against a wall before freestanding.",
     "difficulty": 6,
     "muscles": {
       "primary": [
@@ -503,15 +512,15 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Handstand \u2013 20s / 40s / 60s",
+    "reps": "Handstand – 20s / 40s / 60s",
     "requiredSkills": [
       "Handstand"
     ]
   },
   {
     "name": "Handstand Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 4,
+    "description": "Vertical pressing in a handstand, typically performed against a wall for stability. Aim for full ROM: head to floor and lockout.",
+    "difficulty": 7,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -530,39 +539,38 @@
         "Sartorius"
       ]
     },
-    "reps": "Handstand Push Up \u2013 8 / 12 / 20",
+    "reps": "Handstand Push Up – 3 / 5 / 8",
     "requiredSkills": [
-      "Handstand Push Up"
+      "Wall Handstand",
+      "Wall Handstand Push Up"
     ]
   },
   {
     "name": "Hindu Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
+    "description": "Dynamic push-up flowing from downward dog to cobra and back. Promotes shoulder mobility and scapular control.",
     "difficulty": 4,
     "muscles": {
       "primary": [
-        "Anterior Deltoid",
         "Pectoralis Major",
+        "Anterior Deltoid",
         "Triceps Brachii"
       ],
       "secondary": [
+        "Serratus Anterior",
         "Rectus Abdominis",
-        "Serratus Anterior"
+        "Obliques"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors",
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
+        "Forearm Extensors"
       ]
     },
-    "reps": "Hindu Push Up \u2013 8 / 12 / 20",
+    "reps": "Hindu Push Up – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
     "name": "Hollow Body Hold",
-    "description": "A core stability hold where the lower back remains in contact with the floor, legs and shoulders lifted, maintaining full-body tension.",
+    "description": "Supine isometric: ribs down, lower back pressed to floor, legs and shoulders slightly lifted, arms by ears. Maintain constant tension.",
     "difficulty": 3,
     "muscles": {
       "primary": [
@@ -577,12 +585,12 @@
         "Sartorius"
       ]
     },
-    "reps": "Hollow Body Hold \u2013 10s / 20s / 30s",
+    "reps": "Hollow Body Hold – 10s / 20s / 30s",
     "requiredSkills": []
   },
   {
     "name": "Human Flag",
-    "description": "A full-body isometric hold where you grip a vertical bar and hold your body out sideways, parallel to the ground.",
+    "description": "Sideways isometric on a vertical pole with body parallel to ground. Emphasize shoulder depression and rib-to-pelvis oblique connection.",
     "difficulty": 9,
     "muscles": {
       "primary": [
@@ -601,14 +609,15 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Human Flag \u2013 3s / 5s / 10s",
+    "reps": "Human Flag – 3s / 5s / 10s",
     "requiredSkills": [
-      "Human Flag"
+      "One Arm-hang",
+      "Side Plank"
     ]
   },
   {
     "name": "L-Sit",
-    "description": "A static core hold where you support yourself on your hands and extend your legs straight out in front of you.",
+    "description": "Compression hold supporting body on hands with legs straight at ~90° hip flexion. Keep shoulders depressed and quads locked.",
     "difficulty": 5,
     "muscles": {
       "primary": [
@@ -619,150 +628,153 @@
       ],
       "secondary": [
         "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid",
+        "Triceps Brachii",
         "Quadriceps"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Forearm Flexors",
+        "Forearm Extensors"
       ]
     },
-    "reps": "L-Sit \u2013 10s / 20s / 30s",
-    "requiredSkills": ["L-Sit"]
-  },
- {
-  "name": "Manna",
-  "description": "An elite static compression hold (floor or parallettes) where the hips lift well behind the hands and the shoulders move into deep extension; the terminal step of the L-Sit → V-Sit progression.",
-  "difficulty": 10,
-  "muscles": {
-    "primary": [
-      "Iliopsoas",
-      "Rectus Abdominis",
-      "Transversus Abdominis",
-      "Posterior Deltoid",
-      "Latissimus Dorsi",
-      "Teres Major",
-      "Triceps Brachii (Long Head)",
-      "Serratus Anterior"
-    ],
-    "secondary": [
-      "Rectus Femoris",
-      "Sartorius",
-      "Tensor Fasciae Latae",
-      "Lower Trapezius",
-      "Pectoralis Minor"
-    ],
-    "tertiary": [
-      "Forearm Flexors",
-      "Forearm Extensors"
+    "reps": "L-Sit – 10s / 20s / 30s",
+    "requiredSkills": [
+      "Hollow Body Hold"
     ]
   },
-  "reps": "Hold – 10s / 20s / 30s",
-  "requiredSkills": ["Manna"]
-},
+  {
+    "name": "Manna",
+    "description": "An elite static compression hold (floor or parallettes) where the hips lift well behind the hands and the shoulders move into deep extension; the terminal step of the L-Sit → V-Sit progression.",
+    "difficulty": 10,
+    "muscles": {
+      "primary": [
+        "Iliopsoas",
+        "Rectus Abdominis",
+        "Transversus Abdominis",
+        "Posterior Deltoid",
+        "Latissimus Dorsi",
+        "Teres Major",
+        "Triceps Brachii (Long Head)",
+        "Serratus Anterior"
+      ],
+      "secondary": [
+        "Rectus Femoris",
+        "Sartorius",
+        "Tensor Fasciae Latae",
+        "Lower Trapezius",
+        "Pectoralis Minor"
+      ],
+      "tertiary": [
+        "Forearm Flexors",
+        "Forearm Extensors"
+      ]
+    },
+    "reps": "Hold – 10s / 20s / 30s",
+    "requiredSkills": [
+      "Manna"
+    ]
+  },
   {
     "name": "Mike Tyson Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
+    "description": "Pike push-up variant: start with feet close to hands, shift hips forward as you lower to bring chin near floor, then push back to pike.",
     "difficulty": 4,
     "muscles": {
       "primary": [
-        "Anterior Deltoid",
         "Pectoralis Major",
+        "Anterior Deltoid",
         "Triceps Brachii"
       ],
       "secondary": [
+        "Serratus Anterior",
         "Rectus Abdominis",
-        "Serratus Anterior"
+        "Obliques"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors",
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
+        "Forearm Extensors"
       ]
     },
-    "reps": "Mike Tyson Push Up \u2013 8 / 12 / 20",
+    "reps": "Mike Tyson Push Up – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
     "name": "Muscle Up",
-    "description": "A combination of a Pull Up and dip performed in one movement to transition from below to above a bar using explosive strength.",
+    "description": "Explosive pull-up transitioning to a dip to arrive above the rings or bar. Keep a tight false grip on rings or use a dynamic kip on bar.",
     "difficulty": 8,
     "muscles": {
       "primary": [
-        "Biceps Brachii",
-        "Latissimus Dorsi"
+        "Latissimus Dorsi",
+        "Biceps Brachii"
       ],
       "secondary": [
-        "Lower Trapezius",
-        "Middle Trapezius",
         "Rhomboids",
-        "Upper Trapezius"
+        "Middle Trapezius",
+        "Lower Trapezius"
       ],
       "tertiary": [
+        "Forearm Flexors",
         "Forearm Extensors",
-        "Forearm Flexors"
+        "Posterior Deltoid"
       ]
     },
-    "reps": "Muscle Up \u2013 5 / 8 / 12",
+    "reps": "Muscle Up – 3 / 5 / 8",
     "requiredSkills": [
-      "Muscle Up"
+      "Pull Up",
+      "Dip",
+      "Explosive Pull Up"
     ]
   },
   {
     "name": "One Arm-hang",
-    "description": "A bodyweight or weighted movement used in calisthenics to develop strength, balance, or control.",
+    "description": "Passive or active hang from one arm on a bar or rings. Build time gradually to protect elbows and shoulders.",
     "difficulty": 6,
     "muscles": {
       "primary": [
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Forearm Flexors",
+        "Latissimus Dorsi"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Biceps Brachii",
+        "Rhomboids",
+        "Rotator Cuff"
       ],
       "tertiary": [
         "Forearm Extensors",
-        "Forearm Flexors"
+        "Obliques"
       ]
     },
-    "reps": "One Arm-hang \u2013 10s / 20s / 30s",
+    "reps": "One Arm-hang – 10s / 20s / 30s",
     "requiredSkills": []
   },
   {
     "name": "One Arm Pull Up",
-    "description": "A vertical pulling movement where you lift your body until your chin is above a bar using your back and arm muscles.",
+    "description": "Strict vertical pull using a single arm. Often trained via rope assist or archer progressions before true one-arm reps.",
     "difficulty": 9,
     "muscles": {
       "primary": [
-        "Biceps Brachii",
-        "Latissimus Dorsi"
+        "Latissimus Dorsi",
+        "Biceps Brachii"
       ],
       "secondary": [
-        "Lower Trapezius",
-        "Middle Trapezius",
         "Rhomboids",
-        "Upper Trapezius"
+        "Middle Trapezius",
+        "Lower Trapezius"
       ],
       "tertiary": [
+        "Forearm Flexors",
         "Forearm Extensors",
-        "Forearm Flexors"
+        "Posterior Deltoid"
       ]
     },
-    "reps": "One Arm Pull Up \u2013 5 / 8 / 12",
+    "reps": "One Arm Pull Up – 1 / 3 / 5",
     "requiredSkills": [
-      "One Arm Pull Up"
+      "Archer Pull Up",
+      "Pull Up"
     ]
   },
   {
     "name": "One Arm Elbow Lever",
-    "description": "A bodyweight or weighted movement used in calisthenics to develop strength, balance, or control.",
-    "difficulty": 4,
+    "description": "Single-arm variation of the elbow lever with the torso balanced on one elbow/forearm. Requires strong wrist and core control.",
+    "difficulty": 7,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -781,15 +793,15 @@
         "Sartorius"
       ]
     },
-    "reps": "One Arm Elbow Lever \u2013 10s / 20s / 30s",
+    "reps": "One Arm Elbow Lever – 5s / 10s / 15s",
     "requiredSkills": [
-      "One Arm Elbow Lever"
+      "Elbow Lever"
     ]
   },
   {
     "name": "Planche",
-    "description": "An advanced static hold where the body is held parallel to the ground using only the hands, requiring extreme shoulder, core, and arm strength.",
-    "difficulty": 9,
+    "description": "Elite isometric with body parallel to floor supported only by hands. Scapular protraction and posterior pelvic tilt are non‑negotiable.",
+    "difficulty": 10,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -808,13 +820,16 @@
         "Sartorius"
       ]
     },
-    "reps": "Planche \u2013 5s / 10s / 15s",
-    "requiredSkills": ["Planche"]
+    "reps": "Planche – 5s / 10s / 15s",
+    "requiredSkills": [
+      "Advanced Tuck Planche",
+      "Straddle Planche"
+    ]
   },
   {
     "name": "Planche Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 4,
+    "description": "Push-ups performed while holding a planche body line. Micro-range reps are acceptable initially.",
+    "difficulty": 10,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -833,15 +848,15 @@
         "Sartorius"
       ]
     },
-    "reps": "Planche Push Up \u2013 8 / 12 / 20",
+    "reps": "Planche Push Up – 1 / 3 / 5",
     "requiredSkills": [
-      "Planche Push Up"
+      "Planche"
     ]
   },
   {
     "name": "Press Handstand",
-    "description": "A vertical inversion supported by the hands with the body straight overhead, requiring balance, shoulder strength, and wrist stability.",
-    "difficulty": 6,
+    "description": "From standing or straddle, compress hips and press the feet off the floor to handstand without a jump. Emphasizes scapular elevation and compression.",
+    "difficulty": 7,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -862,38 +877,39 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Press Handstand \u2013 20s / 40s / 60s",
-    "requiredSkills": ["Press Handstand"]
+    "reps": "Press Handstand – 1 / 3 / 5",
+    "requiredSkills": [
+      "Handstand",
+      "L-Sit"
+    ]
   },
   {
     "name": "Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 4,
+    "description": "Standard floor push-up with straight body line, elbows ~45° from torso, and full lockout at top.",
+    "difficulty": 3,
     "muscles": {
       "primary": [
-        "Anterior Deltoid",
         "Pectoralis Major",
+        "Anterior Deltoid",
         "Triceps Brachii"
       ],
       "secondary": [
+        "Serratus Anterior",
         "Rectus Abdominis",
-        "Serratus Anterior"
+        "Obliques"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors",
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
+        "Forearm Extensors"
       ]
     },
-    "reps": "Push Ups \u2013 8 / 12 / 20",
+    "reps": "Push Ups – 10 / 15 / 20",
     "requiredSkills": []
   },
   {
     "name": "Skin the Cat",
-    "description": "A bodyweight or weighted movement used in calisthenics to develop strength, balance, or control.",
-    "difficulty": 6,
+    "description": "On rings or bar, rotate through the shoulders from hang to a full German hang and return. Trains shoulder extension and core control.",
+    "difficulty": 5,
     "muscles": {
       "primary": [
         "Obliques",
@@ -910,12 +926,15 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Skin the Cat \u2013 10s / 20s / 30s",
-    "requiredSkills": []
+    "reps": "Skin the Cat – 3 / 5 / 8",
+    "requiredSkills": [
+      "Hollow Body Hold",
+      "Pull Up"
+    ]
   },
   {
     "name": "Straddle Planche",
-    "description": "An advanced static hold where the body is held parallel to the ground using only the hands, requiring extreme shoulder, core, and arm strength.",
+    "description": "Planche with legs straddled to reduce leverage. Maintain protraction and PPT.",
     "difficulty": 9,
     "muscles": {
       "primary": [
@@ -935,15 +954,15 @@
         "Sartorius"
       ]
     },
-    "reps": "Straddle Planche \u2013 5s / 10s / 15s",
+    "reps": "Straddle Planche – 5s / 10s / 15s",
     "requiredSkills": [
-      "Straddle Planche"
+      "Advanced Tuck Planche"
     ]
   },
   {
     "name": "Tuck Planche",
-    "description": "An advanced static hold where the body is held parallel to the ground using only the hands, requiring extreme shoulder, core, and arm strength.",
-    "difficulty": 3,
+    "description": "Entry-level planche progression with knees tucked to reduce leverage, arms straight, and shoulders protracted.",
+    "difficulty": 6,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -962,40 +981,41 @@
         "Sartorius"
       ]
     },
-    "reps": "Tuck Planche \u2013 5s / 10s / 15s",
+    "reps": "Tuck Planche – 10s / 20s / 30s",
     "requiredSkills": [
-      "Tuck Planche"
+      "Planche Lean",
+      "Pseudo Planche Push Up"
     ]
   },
   {
     "name": "Typewriter Pull Up",
-    "description": "A vertical pulling movement where you lift your body until your chin is above a bar using your back and arm muscles.",
-    "difficulty": 6,
+    "description": "At the top of a wide pull-up, shift your chin horizontally from one hand to the other before lowering. Builds unilateral lat strength.",
+    "difficulty": 7,
     "muscles": {
       "primary": [
-        "Biceps Brachii",
-        "Latissimus Dorsi"
+        "Latissimus Dorsi",
+        "Biceps Brachii"
       ],
       "secondary": [
-        "Lower Trapezius",
-        "Middle Trapezius",
         "Rhomboids",
-        "Upper Trapezius"
+        "Middle Trapezius",
+        "Lower Trapezius"
       ],
       "tertiary": [
+        "Forearm Flexors",
         "Forearm Extensors",
-        "Forearm Flexors"
+        "Posterior Deltoid"
       ]
     },
-    "reps": "Typewriter Pull Up \u2013 5 / 8 / 12",
+    "reps": "Typewriter Pull Up – 3 / 5 / 8",
     "requiredSkills": [
       "Typewriter Pull Up"
     ]
   },
   {
     "name": "V-Sit",
-    "description": "A harder version of the L-sit where the legs are lifted higher into a V shape, requiring more compression and flexibility.",
-    "difficulty": 5,
+    "description": "Advanced compression hold with legs above hip height in a V shape. Requires strong hip flexors and hamstring flexibility.",
+    "difficulty": 7,
     "muscles": {
       "primary": [
         "Iliopsoas",
@@ -1014,13 +1034,15 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "V-Sit \u2013 10 / 20 / 30",
-    "requiredSkills": ["V-Sit"]
+    "reps": "V-Sit – 10s / 20s / 30s",
+    "requiredSkills": [
+      "L-Sit"
+    ]
   },
   {
     "name": "Wall Handstand",
-    "description": "A vertical inversion supported by the hands with the body straight overhead, requiring balance, shoulder strength, and wrist stability.",
-    "difficulty": 6,
+    "description": "Handstand held with assistance from a wall (belly-to-wall or back-to-wall). Focus on stacked alignment and active shoulders.",
+    "difficulty": 4,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -1041,15 +1063,15 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Wall Handstand \u2013 20s / 40s / 60s",
+    "reps": "Wall Handstand – 20s / 40s / 60s",
     "requiredSkills": [
       "Wall Handstand"
     ]
   },
   {
     "name": "Wall Handstand Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 4,
+    "description": "Handstand push-up performed with heels touching a wall for balance. Train full ROM when possible.",
+    "difficulty": 6,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -1068,13 +1090,13 @@
         "Sartorius"
       ]
     },
-    "reps": "Wall Handstand Push Up \u2013 8 / 12 / 20",
+    "reps": "Wall Handstand Push Up – 5 / 8 / 12",
     "requiredSkills": []
   },
   {
     "name": "Wall-supported L-Sit",
-    "description": "A static core hold where you support yourself on your hands and extend your legs straight out in front of you.",
-    "difficulty": 5,
+    "description": "Assisted L-sit with back lightly touching a wall or using low parallettes for support. Useful for building compression time.",
+    "difficulty": 3,
     "muscles": {
       "primary": [
         "Iliopsoas",
@@ -1084,66 +1106,38 @@
       ],
       "secondary": [
         "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid",
+        "Triceps Brachii",
         "Quadriceps"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Forearm Flexors",
+        "Forearm Extensors"
       ]
     },
-    "reps": "Wall-supported L-Sit \u2013 10s / 20s / 30s",
+    "reps": "Wall-supported L-Sit – 15s / 25s / 35s",
     "requiredSkills": []
   },
   {
     "name": "Wide Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 4,
+    "description": "Push-up with hands set wider than shoulder-width to emphasize pectorals and reduce triceps contribution.",
+    "difficulty": 3,
     "muscles": {
       "primary": [
-        "Anterior Deltoid",
         "Pectoralis Major",
+        "Anterior Deltoid",
         "Triceps Brachii"
       ],
       "secondary": [
+        "Serratus Anterior",
         "Rectus Abdominis",
-        "Serratus Anterior"
+        "Obliques"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors",
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
+        "Forearm Extensors"
       ]
     },
-    "reps": "Wide Push Up \u2013 8 / 12 / 20",
-    "requiredSkills": []
-  },
-  {
-    "name": "Wide Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 2,
-    "muscles": {
-      "primary": [
-        "Anterior Deltoid",
-        "Pectoralis Major",
-        "Triceps Brachii"
-      ],
-      "secondary": [
-        "Rectus Abdominis",
-        "Serratus Anterior"
-      ],
-      "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors",
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
-      ]
-    },
-    "reps": "Wide Push Ups \u2013 8 / 12 / 20",
+    "reps": "Wide Push Up – 10 / 15 / 20",
     "requiredSkills": []
   },
   {
@@ -1168,7 +1162,7 @@
         "Sartorius"
       ]
     },
-    "reps": "Diamond Push Ups \u2013 8 / 12 / 20",
+    "reps": "Diamond Push Ups – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
@@ -1193,12 +1187,12 @@
         "Sartorius"
       ]
     },
-    "reps": "Archer Push Ups \u2013 8 / 12 / 20",
+    "reps": "Archer Push Ups – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
     "name": "Shoulder Taps",
-    "description": "From a plank position, alternate tapping your opposite shoulder with one hand while keeping your body stable.",
+    "description": "From high plank, tap the opposite shoulder while resisting hip sway (anti-rotation). Move slow to increase difficulty.",
     "difficulty": 3,
     "muscles": {
       "primary": [
@@ -1216,131 +1210,127 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Shoulder Taps \u2013 8 / 12 / 20",
+    "reps": "Shoulder Taps – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
     "name": "Plank Arm Reach",
-    "description": "A dynamic plank where you extend One Arm forward at a time, challenging core stability and anti-rotation.",
-    "difficulty": 2,
+    "description": "From high plank, extend one arm forward without shifting the torso. Squeeze glutes and quads to keep pelvis level.",
+    "difficulty": 3,
     "muscles": {
       "primary": [
-        "Obliques",
         "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Transversus Abdominis",
+        "Obliques"
       ],
       "secondary": [
         "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Gluteus Maximus",
+        "Quadriceps"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Forearm Flexors",
+        "Forearm Extensors"
       ]
     },
-    "reps": "Plank Arm Reach \u2013 5 / 10 / 15",
+    "reps": "Plank Arm Reach – 5 / 10 / 15",
     "requiredSkills": []
   },
   {
     "name": "Side Plank Raises",
-    "description": "A core stability exercise where you support your body on one forearm and the side of one foot, holding the body in a straight line.",
-    "difficulty": 2,
+    "description": "From side plank, lower hips toward the floor and lift back to neutral. Keep shoulder stacked over elbow.",
+    "difficulty": 3,
     "muscles": {
       "primary": [
         "Obliques",
-        "Rectus Abdominis",
         "Transversus Abdominis"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Gluteus Medius",
+        "Quadratus Lumborum"
       ],
       "tertiary": [
-        "Forearm Extensors",
+        "Anterior Deltoid",
         "Forearm Flexors"
       ]
     },
-    "reps": "Side Plank Raises \u2013 30s / 60s / 90s",
+    "reps": "Side Plank Raises – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
     "name": "Side Plank",
-    "description": "A core stability exercise where you support your body on one forearm and the side of one foot, holding the body in a straight line.",
+    "description": "Static side-lying plank on forearm and edge of foot with a straight line from head to heels.",
     "difficulty": 2,
     "muscles": {
       "primary": [
         "Obliques",
-        "Rectus Abdominis",
         "Transversus Abdominis"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Gluteus Medius",
+        "Quadratus Lumborum"
       ],
       "tertiary": [
-        "Forearm Extensors",
+        "Anterior Deltoid",
         "Forearm Flexors"
       ]
     },
-    "reps": "Side Plank \u2013 30s / 60s / 90s",
+    "reps": "Side Plank – 30s / 60s / 90s",
     "requiredSkills": [
       "Side Plank"
     ]
   },
   {
     "name": "Plank",
-    "description": "A bodyweight or weighted movement used in calisthenics to develop strength, balance, or control.",
+    "description": "High plank on hands with straight body line, active shoulders, and posterior pelvic tilt.",
     "difficulty": 2,
     "muscles": {
       "primary": [
-        "Obliques",
         "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Transversus Abdominis",
+        "Obliques"
       ],
       "secondary": [
         "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Gluteus Maximus",
+        "Quadriceps"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Forearm Flexors",
+        "Forearm Extensors"
       ]
     },
-    "reps": "Plank \u2013 30s / 60s / 90s",
+    "reps": "Plank – 30s / 60s / 90s",
     "requiredSkills": [
       "Plank"
     ]
   },
   {
     "name": "Low Plank",
-    "description": "A bodyweight or weighted movement used in calisthenics to develop strength, balance, or control.",
+    "description": "Forearm plank variant. Elbows under shoulders, forearms parallel, ribs down, and glutes engaged.",
     "difficulty": 2,
     "muscles": {
       "primary": [
-        "Obliques",
         "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Transversus Abdominis",
+        "Obliques"
       ],
       "secondary": [
         "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Gluteus Maximus",
+        "Quadriceps"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Forearm Flexors",
+        "Forearm Extensors"
       ]
     },
-    "reps": "Low Plank \u2013 30s / 60s / 90s",
+    "reps": "Low Plank – 30s / 60s / 90s",
     "requiredSkills": []
   },
   {
     "name": "Planche Lean",
-    "description": "An advanced static hold where the body is held parallel to the ground using only the hands, requiring extreme shoulder, core, and arm strength.",
+    "description": "Lean the shoulders forward over the wrists in a straight-arm plank to overload shoulder flexion and build planche-specific strength.",
     "difficulty": 3,
     "muscles": {
       "primary": [
@@ -1360,127 +1350,127 @@
         "Sartorius"
       ]
     },
-    "reps": "Planche Lean \u2013 5s / 10s / 15s",
+    "reps": "Planche Lean – 10s / 20s / 30s",
     "requiredSkills": [
       "Planche Lean"
     ]
   },
   {
     "name": "Pseudo Planche Push Up",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 2,
+    "description": "Push-up with hands turned out and placed lower/closer to hips with a forward lean to increase shoulder flexion demands. Planche prep.",
+    "difficulty": 5,
     "muscles": {
       "primary": [
-        "Anterior Deltoid",
         "Pectoralis Major",
+        "Anterior Deltoid",
         "Triceps Brachii"
       ],
       "secondary": [
+        "Serratus Anterior",
         "Rectus Abdominis",
-        "Serratus Anterior"
+        "Obliques"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors",
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
+        "Forearm Extensors"
       ]
     },
-    "reps": "Pseudo Planche Push Up \u2013 8 / 12 / 20",
+    "reps": "Pseudo Planche Push Up – 6 / 10 / 14",
     "requiredSkills": []
   },
   {
     "name": "Head to Bar",
-    "description": "A drill where the head is brought very close or touches the Pull Up bar, used to train control and strength at the top range of a Pull Up.",
-    "difficulty": 3,
+    "description": "High pull-up drill pulling until the bar touches or nearly touches the forehead. Control the descent.",
+    "difficulty": 4,
     "muscles": {
       "primary": [
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Latissimus Dorsi",
+        "Biceps Brachii"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Rhomboids",
+        "Middle Trapezius",
+        "Lower Trapezius"
       ],
       "tertiary": [
+        "Forearm Flexors",
         "Forearm Extensors",
-        "Forearm Flexors"
+        "Posterior Deltoid"
       ]
     },
-    "reps": "Head to Bar \u2013 8 / 12 / 20",
+    "reps": "Head to Bar – 5 / 8 / 12",
     "requiredSkills": []
   },
   {
     "name": "Head Above Bar",
-    "description": "A high Pull Up variation where you pull so far your entire head rises above the bar, building explosive upper-body pulling power.",
-    "difficulty": 3,
+    "description": "High pull-up targeting chest-to-bar height; strive to bring sternum to the bar with an aggressive pull.",
+    "difficulty": 4,
     "muscles": {
       "primary": [
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Latissimus Dorsi",
+        "Biceps Brachii"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Rhomboids",
+        "Middle Trapezius",
+        "Lower Trapezius"
       ],
       "tertiary": [
+        "Forearm Flexors",
         "Forearm Extensors",
-        "Forearm Flexors"
+        "Posterior Deltoid"
       ]
     },
-    "reps": "Head Above Bar \u2013 5 / 10 / 15",
+    "reps": "Head Above Bar – 5 / 8 / 12",
     "requiredSkills": []
   },
   {
     "name": "Pull Up",
-    "description": "A vertical pulling movement where you lift your body until your chin is above a bar using your back and arm muscles.",
+    "description": "Pronated-grip pull-up from a dead hang until chin clears the bar, finishing with elbows down and shoulder blades depressed.",
+    "difficulty": 4,
+    "muscles": {
+      "primary": [
+        "Latissimus Dorsi",
+        "Biceps Brachii"
+      ],
+      "secondary": [
+        "Rhomboids",
+        "Middle Trapezius",
+        "Lower Trapezius"
+      ],
+      "tertiary": [
+        "Forearm Flexors",
+        "Forearm Extensors",
+        "Posterior Deltoid"
+      ]
+    },
+    "reps": "Pronated Pull Ups – 5 / 8 / 12",
+    "requiredSkills": [
+      "Pull Up"
+    ]
+  },
+  {
+    "name": "Supinated Pull Up",
+    "description": "Underhand (chin-up) pull emphasizing biceps while still engaging lats. Keep ribs down and avoid excessive lumbar arch.",
     "difficulty": 3,
     "muscles": {
       "primary": [
-        "Biceps Brachii",
-        "Latissimus Dorsi"
+        "Latissimus Dorsi",
+        "Biceps Brachii"
       ],
       "secondary": [
-        "Lower Trapezius",
-        "Middle Trapezius",
         "Rhomboids",
-        "Upper Trapezius"
+        "Middle Trapezius",
+        "Lower Trapezius"
       ],
       "tertiary": [
+        "Forearm Flexors",
         "Forearm Extensors",
-        "Forearm Flexors"
+        "Posterior Deltoid"
       ]
     },
-    "reps": "Pronated Pull Ups \u2013 5 / 8 / 12",
-    "requiredSkills": ["Pull Up"]
-  },
-  {
-  "name": "Supinated Pull Up",
-  "description": "A pull-up performed with a supinated (underhand) grip, palms facing toward you. This variation emphasizes the biceps while still engaging the lats and upper back. Use band resistance if needed.",
-  "difficulty": 3,
-  "muscles": {
-    "primary": [
-      "Biceps Brachii",
-      "Latissimus Dorsi"
-    ],
-    "secondary": [
-      "Lower Trapezius",
-      "Middle Trapezius",
-      "Rhomboids",
-      "Upper Trapezius"
-    ],
-    "tertiary": [
-      "Forearm Extensors",
-      "Forearm Flexors"
-    ]
-  },
-  "reps": "Supinated Pull Ups – 5 / 8 / 12",
-  "requiredSkills": []
+    "reps": "Supinated Pull Ups – 5 / 8 / 12",
+    "requiredSkills": []
   },
   {
     "name": "Mike Tyson Push Ups",
@@ -1504,38 +1494,12 @@
         "Sartorius"
       ]
     },
-    "reps": "Mike Tyson Push Ups \u2013 8 / 12 / 20",
+    "reps": "Mike Tyson Push Ups – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
-    "name": "Dragon Flag",
-    "description": "A core-intensive movement where the body is kept straight and lowered/raised while supported only by the upper back and shoulders.",
-    "difficulty": 7,
-    "muscles": {
-      "primary": [
-        "Latissimus Dorsi",
-        "Obliques"
-      ],
-      "secondary": [
-        "Anterior Deltoid",
-        "Forearm Extensors",
-        "Forearm Flexors",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
-      ],
-      "tertiary": [
-        "Gluteus Maximus",
-        "Gluteus Medius"
-      ]
-    },
-    "reps": "Dragon Flag \u2013 10 / 20 / 30",
-    "requiredSkills": [
-      "Dragon Flag"
-    ]
-  },
-  {
     "name": "3-5-7s",
-    "description": "A bodyweight or weighted movement used in calisthenics to develop strength, balance, or control.",
+    "description": "Isometric ladder protocol: hold bottom, mid, and top positions of a chosen exercise for 3s/5s/7s respectively. One 'rep' completes all three holds.",
     "difficulty": 3,
     "muscles": {
       "primary": [
@@ -1553,37 +1517,35 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "3-5-7s \u2013 10s / 20s / 30s",
+    "reps": "3-5-7s – 10s / 20s / 30s",
     "requiredSkills": []
   },
   {
     "name": "Tiger Push Ups",
-    "description": "A bodyweight exercise performed by lowering and raising the body using the arms while keeping the body straight. Variations target different parts of the chest, shoulders, and triceps.",
-    "difficulty": 2,
+    "description": "Tiger bend push-up: start on forearms (tripod), press to hands, then lower back to forearms. Builds triceps and anterior delts.",
+    "difficulty": 5,
     "muscles": {
       "primary": [
-        "Anterior Deltoid",
         "Pectoralis Major",
+        "Anterior Deltoid",
         "Triceps Brachii"
       ],
       "secondary": [
+        "Serratus Anterior",
         "Rectus Abdominis",
-        "Serratus Anterior"
+        "Obliques"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors",
-        "Iliopsoas",
-        "Rectus Femoris",
-        "Sartorius"
+        "Forearm Extensors"
       ]
     },
-    "reps": "Tiger Push Ups \u2013 8 / 12 / 20",
+    "reps": "Tiger Push Ups – 5 / 8 / 12",
     "requiredSkills": []
   },
   {
     "name": "Walk Outs and Back",
-    "description": "A full-body drill involving walking hands out from a standing position into plank and back again, developing shoulder mobility and core stability.",
+    "description": "From standing, hinge to place hands on floor, walk to a high plank, then walk back to stand. Keep core tight to avoid lumbar sway.",
     "difficulty": 2,
     "muscles": {
       "primary": [
@@ -1601,12 +1563,12 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Walk Outs and Back \u2013 10 / 20 / 30",
+    "reps": "Walk Outs and Back – 10 / 20 / 30",
     "requiredSkills": []
   },
   {
     "name": "Walk Outs",
-    "description": "A mobility and strength drill where you hinge at the hips, walk your hands forward to a plank, then walk them back.",
+    "description": "Inchworm-style drill: hinge, walk hands forward to high plank, pause briefly, then walk hands back and stand tall.",
     "difficulty": 2,
     "muscles": {
       "primary": [
@@ -1624,81 +1586,76 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Walk Outs \u2013 8 / 12 / 20",
+    "reps": "Walk Outs – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
     "name": "Superman",
-    "description": "An isometric hold lying face down with both arms and legs lifted off the ground, used to strengthen the lower back.",
-    "difficulty": 3,
+    "description": "Prone hold lifting arms and legs off the floor to strengthen spinal extensors. Keep glutes tight and neck neutral.",
+    "difficulty": 2,
     "muscles": {
       "primary": [
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Erector Spinae",
+        "Gluteus Maximus",
+        "Hamstrings"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
+        "Lower Trapezius",
         "Posterior Deltoid"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Calves"
       ]
     },
-    "reps": "Superman \u2013 10s / 20s / 30s",
+    "reps": "Superman – 20s / 30s / 40s",
     "requiredSkills": []
   },
   {
     "name": "Star Superman",
-    "description": "An isometric hold lying face down with both arms and legs lifted off the ground, used to strengthen the lower back.",
-    "difficulty": 3,
+    "description": "Wide-stance/prone variation of the superman with arms and legs abducted into a star shape. Emphasizes posterior chain endurance.",
+    "difficulty": 2,
     "muscles": {
       "primary": [
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Erector Spinae",
+        "Gluteus Maximus",
+        "Hamstrings"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
+        "Lower Trapezius",
         "Posterior Deltoid"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Calves"
       ]
     },
-    "reps": "Star Superman \u2013 10s / 20s / 30s",
+    "reps": "Star Superman – 20s / 30s / 40s",
     "requiredSkills": []
   },
   {
     "name": "Jump Squat",
-    "description": "A plyometric exercise that combines a bodyweight squat with an explosive jump to build lower body power.",
-    "difficulty": 2,
+    "description": "Bodyweight squat into an explosive vertical jump. Land softly and immediately descend into the next rep (stick and go).",
+    "difficulty": 3,
     "muscles": {
       "primary": [
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Quadriceps",
+        "Gluteus Maximus",
+        "Calves"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Hamstrings",
+        "Erector Spinae"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Rectus Abdominis",
+        "Obliques"
       ]
     },
-    "reps": "Jump Squat \u2013 10 / 15 / 20",
+    "reps": "Jump Squat – 10 / 15 / 20",
     "requiredSkills": []
   },
   {
     "name": "Bicycle Crunches",
-    "description": "A core exercise that alternates opposite elbow and knee in a twisting crunch motion to engage the obliques.",
+    "description": "Alternating elbow‑to‑opposite‑knee crunch with an extended leg hovering off the floor. Keep lower back pressed down.",
     "difficulty": 2,
     "muscles": {
       "primary": [
@@ -1716,12 +1673,12 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Bicycle Crunches \u2013 20 / 30 / 40",
+    "reps": "Bicycle Crunches – 20 / 30 / 40",
     "requiredSkills": []
   },
   {
     "name": "Windshield Wiper",
-    "description": "A core exercise where your legs move side to side while lying down, mimicking windshield wipers to challenge the obliques.",
+    "description": "Supine or hanging variation in which legs sweep side to side like wipers. Keep shoulders pinned and control the eccentric.",
     "difficulty": 3,
     "muscles": {
       "primary": [
@@ -1739,81 +1696,79 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Windshield Wiper \u2013 20 / 30 / 40",
+    "reps": "Windshield Wiper – 20 / 30 / 40",
     "requiredSkills": []
   },
   {
     "name": "Wide Pull Up",
-    "description": "A vertical pulling movement where you lift your body until your chin is above a bar using your back and arm muscles.",
-    "difficulty": 3,
+    "description": "Pull-up with a wider-than-shoulder grip to increase lat and teres major involvement; slightly reduced ROM at the top.",
+    "difficulty": 5,
     "muscles": {
       "primary": [
-        "Biceps Brachii",
-        "Latissimus Dorsi"
+        "Latissimus Dorsi",
+        "Biceps Brachii"
       ],
       "secondary": [
-        "Lower Trapezius",
-        "Middle Trapezius",
         "Rhomboids",
-        "Upper Trapezius"
+        "Middle Trapezius",
+        "Lower Trapezius"
       ],
       "tertiary": [
+        "Forearm Flexors",
         "Forearm Extensors",
-        "Forearm Flexors"
+        "Posterior Deltoid"
       ]
     },
-    "reps": "Wide Pull Ups \u2013 5 / 8 / 12",
-    "requiredSkills": ["Pull Up"]
+    "reps": "Wide Pull Ups – 5 / 8 / 12",
+    "requiredSkills": [
+      "Pull Up"
+    ]
   },
   {
     "name": "Opposite Arm & Leg Extensions",
-    "description": "A floor movement performed on the stomach by extending opposite arm and leg simultaneously, improving spinal stability.",
-    "difficulty": 3,
+    "description": "Prone 'swimmer' alternation: lift opposite arm and leg off the floor simultaneously, then switch sides in rhythm.",
+    "difficulty": 2,
     "muscles": {
       "primary": [
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Erector Spinae",
+        "Gluteus Maximus",
+        "Hamstrings"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
+        "Lower Trapezius",
         "Posterior Deltoid"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Calves"
       ]
     },
-    "reps": "Opposite Arm & Leg Extensions \u2013 8 / 12 / 20",
+    "reps": "Opposite Arm & Leg Extensions – 10 / 16 / 20",
     "requiredSkills": []
   },
   {
     "name": "Full Body Extensions",
-    "description": "A floor exercise where both arms and legs are extended and lifted from a prone position, strengthening the posterior chain.",
-    "difficulty": 3,
+    "description": "Prone dynamic extension lifting arms and legs off the floor together, then lowering under control.",
+    "difficulty": 2,
     "muscles": {
       "primary": [
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Erector Spinae",
+        "Gluteus Maximus",
+        "Hamstrings"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
+        "Lower Trapezius",
         "Posterior Deltoid"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Calves"
       ]
     },
-    "reps": "Full Body Extensions \u2013 8 / 12 / 20",
+    "reps": "Full Body Extensions – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
     "name": "Handstand on Blocks (Facing Up)",
-    "description": "A handstand variation performed on blocks facing upward, requiring additional shoulder and wrist strength.",
+    "description": "Handstand performed with hands elevated on blocks (palms on top). Increases wrist ROM and balance challenge.",
     "difficulty": 6,
     "muscles": {
       "primary": [
@@ -1835,12 +1790,12 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Handstand on Blocks (Facing Up) \u2013 8 / 12 / 20",
+    "reps": "Handstand on Blocks (Facing Up) – 20s / 40s / 60s",
     "requiredSkills": []
   },
   {
     "name": "Handstand on Blocks (Facing Down)",
-    "description": "A handstand performed on elevated blocks while facing downward, which increases wrist range of motion and balance challenge.",
+    "description": "Handstand on blocks gripping the front edge (fingers down). Adds range and a different balance feel.",
     "difficulty": 6,
     "muscles": {
       "primary": [
@@ -1862,13 +1817,13 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Handstand on Blocks (Facing Down) \u2013 20s / 40s / 60s",
+    "reps": "Handstand on Blocks (Facing Down) – 20s / 40s / 60s",
     "requiredSkills": []
   },
   {
     "name": "Wall Handstand Hold",
-    "description": "A vertical inversion supported by the hands with the body straight overhead, requiring balance, shoulder strength, and wrist stability.",
-    "difficulty": 6,
+    "description": "Timed wall-assisted handstand emphasizing stacked alignment and shoulder elevation.",
+    "difficulty": 4,
     "muscles": {
       "primary": [
         "Anterior Deltoid",
@@ -1889,12 +1844,12 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Wall Handstand Hold \u2013 20s / 40s / 60s",
+    "reps": "Wall Handstand Hold – 20s / 40s / 60s",
     "requiredSkills": []
   },
   {
     "name": "Wall Handstand Walkouts",
-    "description": "A mobility and strength exercise where you walk your hands away from the wall while in a handstand and return, training shoulder control.",
+    "description": "From a wall handstand, carefully walk your hands away from the wall and then back to develop scapular control and midline stability.",
     "difficulty": 6,
     "muscles": {
       "primary": [
@@ -1916,61 +1871,31 @@
         "Gluteus Medius"
       ]
     },
-    "reps": "Wall Handstand Walkouts \u2013 8 / 12 / 20",
+    "reps": "Wall Handstand Walkouts – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
     "name": "Knee Raises",
-    "description": "A bodyweight or weighted movement used in calisthenics to develop strength, balance, or control.",
+    "description": "Hanging knee raises: from a dead hang, posteriorly tilt pelvis and lift knees toward chest without swinging.",
     "difficulty": 3,
     "muscles": {
       "primary": [
-        "Obliques",
         "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Iliopsoas"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Obliques"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors"
       ]
     },
-    "reps": "Knee Raises \u2013 10s / 20s / 30s",
+    "reps": "Knee Raises – 10 / 15 / 20",
     "requiredSkills": []
   },
   {
-    "name": "Human Flag",
-    "description": "A full-body isometric hold where you grip a vertical bar and hold your body out sideways, parallel to the ground.",
-    "difficulty": 6,
-    "muscles": {
-      "primary": [
-        "Latissimus Dorsi",
-        "Obliques"
-      ],
-      "secondary": [
-        "Anterior Deltoid",
-        "Forearm Extensors",
-        "Forearm Flexors",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
-      ],
-      "tertiary": [
-        "Gluteus Maximus",
-        "Gluteus Medius"
-      ]
-    },
-    "reps": "Human Flag \u2013 3s / 5s / 10s",
-    "requiredSkills": [
-      "Human Flag"
-    ]
-  },
-  {
     "name": "Shorties",
-    "description": "A core compression drill where the legs are lifted and brought in tightly toward the chest, used to build strength for V-sits or press handstands.",
+    "description": "Seated compression pulses: with hands by hips and legs straight, lift heels a few centimeters off the floor for reps. Keep knees locked.",
     "difficulty": 3,
     "muscles": {
       "primary": [
@@ -1988,58 +1913,54 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Shorties \u2013 10 / 20 / 30",
+    "reps": "Shorties – 10 / 20 / 30",
     "requiredSkills": []
   },
   {
     "name": "Kettlebell Swings",
-    "description": "A hip-driven movement where a kettlebell is explosively swung from between the legs to shoulder height, training glutes and hamstrings.",
+    "description": "Hip-hinge ballistic swing from between the legs to roughly chest height (hard-style). Drive with hips, not arms.",
     "difficulty": 3,
     "muscles": {
       "primary": [
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Gluteus Maximus",
+        "Hamstrings",
+        "Erector Spinae"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Rectus Abdominis",
+        "Obliques",
+        "Latissimus Dorsi"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Forearm Flexors",
+        "Forearm Extensors"
       ]
     },
-    "reps": "Kettlebell Swings \u2013 5 / 10 / 15",
+    "reps": "Kettlebell Swings – 10 / 20 / 30",
     "requiredSkills": []
   },
   {
     "name": "Kettlebell Raises",
-    "description": "Isolated shoulder and arm movements using kettlebells to improve deltoid strength and control.",
+    "description": "Front or lateral shoulder raises with kettlebells performed strictly without body English.",
     "difficulty": 3,
     "muscles": {
       "primary": [
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Anterior Deltoid",
+        "Lateral Deltoid"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Upper Trapezius"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors"
       ]
     },
-    "reps": "Kettlebell Raises \u2013 8 / 12 / 20",
+    "reps": "Kettlebell Raises – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
     "name": "Kettlebell Lifts",
-    "description": "Strength movements involving lifting kettlebells in controlled motions, typically targeting shoulders, arms, and core.",
+    "description": "General strength lifts with kettlebells (e.g., clean, press) performed in controlled fashion. Select loads conservatively.",
     "difficulty": 3,
     "muscles": {
       "primary": [
@@ -2057,76 +1978,70 @@
         "Forearm Flexors"
       ]
     },
-    "reps": "Kettlebell Lifts \u2013 10 / 20 / 30",
+    "reps": "Kettlebell Lifts – 10 / 20 / 30",
     "requiredSkills": []
   },
   {
     "name": "Iron Cross with Kettlebells",
-    "description": "An isometric hold with arms extended laterally while holding kettlebells, mimicking the gymnastics iron cross and training shoulder stability.",
-    "difficulty": 3,
+    "description": "Static lateral arm hold at ~90° abduction while holding kettlebells. Mimics ring iron cross loading pattern for the shoulders.",
+    "difficulty": 5,
     "muscles": {
       "primary": [
-        "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Lateral Deltoid",
+        "Anterior Deltoid",
+        "Rotator Cuff"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Upper Trapezius",
+        "Serratus Anterior"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Rectus Abdominis",
+        "Obliques"
       ]
     },
-    "reps": "Iron Cross with Kettlebells \u2013 10s / 20s / 30s",
+    "reps": "Iron Cross with Kettlebells – 10s / 20s / 30s",
     "requiredSkills": []
   },
   {
     "name": "Figure Eight",
-    "description": "A kettlebell movement where the weight is passed in a figure-eight pattern through the legs, challenging grip and coordination.",
+    "description": "Pass the kettlebell in a figure‑8 pattern between the legs using a strong hinge and neutral spine. Keep the bell close to the body.",
     "difficulty": 3,
     "muscles": {
       "primary": [
+        "Forearm Flexors",
         "Obliques",
-        "Rectus Abdominis",
-        "Transversus Abdominis"
+        "Gluteus Maximus"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Hamstrings",
+        "Erector Spinae"
       ],
       "tertiary": [
-        "Forearm Extensors",
-        "Forearm Flexors"
+        "Forearm Extensors"
       ]
     },
-    "reps": "Figure Eight \u2013 8 / 12 / 20",
+    "reps": "Figure Eight – 8 / 12 / 20",
     "requiredSkills": []
   },
   {
     "name": "Band Opposite Arm-Leg Pull",
-    "description": "A bodyweight or weighted movement used in calisthenics to develop strength, balance, or control.",
-    "difficulty": 3,
+    "description": "Anti-rotation core drill using a resistance band: pull with one arm while extending the opposite leg, resisting trunk twist.",
+    "difficulty": 2,
     "muscles": {
       "primary": [
-        "Obliques",
         "Rectus Abdominis",
+        "Obliques",
         "Transversus Abdominis"
       ],
       "secondary": [
-        "Anterior Deltoid",
-        "Lateral Deltoid",
-        "Posterior Deltoid"
+        "Gluteus Maximus"
       ],
       "tertiary": [
-        "Forearm Extensors",
         "Forearm Flexors"
       ]
     },
-    "reps": "Band Opposite Arm-Leg Pull \u2013 10s / 20s / 30s",
+    "reps": "Band Opposite Arm-Leg Pull – 8 / 12 / 20",
     "requiredSkills": []
   }
 ]

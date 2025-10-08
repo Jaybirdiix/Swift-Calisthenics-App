@@ -8,6 +8,43 @@ import SwiftUI
 
 import Foundation
 
+import Foundation
+import SwiftUI
+
+// --- API config (dev vs prod) ---
+private enum API {
+    #if DEBUG
+    static let baseURL = URL(string: "http://127.0.0.1:8000")!
+    #else
+    static let baseURL = URL(string: "https://YOUR-PROD-URL")!
+    #endif
+}
+
+// --- DTOs that match the FastAPI /plan endpoint ---
+private struct PlanRequestDTO: Codable {
+    let target_muscles: [String]
+    let number_of_exercises: Int
+    let min_difficulty: Int
+    let max_difficulty: Int
+    let user_skills: [String]
+    let gate_by_skills: Bool
+}
+
+private struct PlanExerciseDTO: Codable, Identifiable {
+    var id: String { name }            // use name as stable id
+    let name: String
+    let description: String
+    let difficulty: Int
+    let reps: String?
+}
+
+private struct PlanResponseDTO: Codable {
+    let plan: [PlanExerciseDTO]
+    let focus_scores: [String: Int]
+    let notes: [String]
+}
+
+
 class WorkoutViewModel: ObservableObject {
     @Published var allExercises: [Exercise] = []
     @Published var selectedMuscles: [String] = []
@@ -15,6 +52,10 @@ class WorkoutViewModel: ObservableObject {
     @Published var generatedWorkout: [Exercise] = []
     
     @Published var trainingFocusScores: [String: Int] = [:]
+    
+    @Published var aiFocusScores: [(muscle: String, score: Int)] = []
+    @Published var aiNotes: [String] = []
+
 
     var trainingFocusSkillName: String? {
         selectedSkills.count == 1 ? selectedSkills.first : nil
@@ -40,6 +81,70 @@ class WorkoutViewModel: ObservableObject {
         print("✅ Loaded \(decoded.count) exercises")
         self.allExercises = decoded
     }
+    
+//    added
+    private func keyMusclesFromSelectedSkill() -> [String] {
+        guard selectedSkills.count == 1,
+              let chosen = selectedSkills.first,
+              let reference = allExercises.first(where: { $0.name == chosen })
+        else { return [] }
+
+        let keys = Set(reference.muscles.primary + reference.muscles.secondary + reference.muscles.tertiary)
+        return Array(keys)
+    }
+    
+    func generateWorkoutWithAI() async {
+        let targets = keyMusclesFromSelectedSkill()
+        guard !targets.isEmpty else {
+            // Optional: clear or fall back to your local generator
+            self.generatedWorkout = []
+            return
+        }
+
+        let body = PlanRequestDTO(
+            target_muscles: targets,
+            number_of_exercises: 6,
+            min_difficulty: 1,
+            max_difficulty: 10,
+            user_skills: [],            // fill if you track unlocked skills
+            gate_by_skills: false
+        )
+
+        var req = URLRequest(url: API.baseURL.appendingPathComponent("plan"))
+        req.httpMethod = "POST"
+        req.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpBody = try? JSONEncoder().encode(body)
+
+        do {
+            let (data, _) = try await URLSession.shared.data(for: req)
+            let dto = try JSONDecoder().decode(PlanResponseDTO.self, from: data)
+
+            // Map DTO -> your app's Exercise model
+            self.generatedWorkout = dto.plan.map { p in
+                Exercise(
+                    id: UUID(),  // if your Exercise uses a String id, use p.id
+                    name: p.name,
+                    reps: p.reps,
+                    muscles: .init(primary: [], secondary: [], tertiary: [])
+                )
+            }
+
+            // Save focus scores and notes if you want to show them
+            self.aiFocusScores = dto.focus_scores
+                .sorted { ($0.value, $0.key) > ($1.value, $1.key) }
+                .map { ($0.key, $0.value) }
+            self.aiNotes = dto.notes
+
+        } catch {
+            print("AI plan fetch failed:", error)
+            // Optional: fall back to local generator on failure
+            // self.generateWorkout()
+        }
+    }
+
+    
+        //---------
+
     
 
     
