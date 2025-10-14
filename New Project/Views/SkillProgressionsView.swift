@@ -246,10 +246,20 @@ struct Progression: Identifiable, Equatable, Codable {
 
 // MARK: - View
 struct SkillProgressionsView: View {
+
+    /// Collect unlocked step names from current saved state (merged with defaults on appear).
+    
+    
     @State private var selectedCategory: SkillCategory = .horizontalPush
     @State private var progressionsByCategory: [SkillCategory: [Progression]] = [:]
+    
+    // this variable is to keep track of the json file of unlocked skills
+    @State private var lastExportURL: URL? = nil
+
 
     private let storeKey = "skillProgressions.v1"
+    
+
 
     // v5.4 (2019-03-13) Bodyweight Fitness Progressions
     private var defaultProgressions: [SkillCategory: [Progression]] {
@@ -796,6 +806,22 @@ struct SkillProgressionsView: View {
 
     var body: some View {
         VStack {
+            
+//            this is how i export the progressions
+            HStack {
+                    Button("Copy Unlocked JSON") { copyUnlockedToClipboard() }
+                    Button("Print JSON") { printUnlockedToConsole() }
+                    Button("Save JSON to File") {
+                        lastExportURL = writeUnlockedJSONToFile()   // writes Documents/unlocked_skills.json
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .padding(.horizontal)
+            
+
+                
+            // end
+            
             Picker("Category", selection: $selectedCategory) {
                 ForEach(SkillCategory.allCases) { cat in
                     Text(cat.rawValue).tag(cat)
@@ -916,4 +942,115 @@ struct SkillProgressionsView: View {
         }
         return result
     }
+}
+
+
+extension SkillProgressionsView {
+    func makeUnlockedSkillsJSON() -> String {
+        // Use what's already in memory:
+        let merged = progressionsByCategory.isEmpty ? defaultProgressions : progressionsByCategory
+        let names = merged.values
+            .flatMap { $0 }            // [Progression]
+            .flatMap { $0.steps }      // [ProgressionStep]
+            .filter { $0.isUnlocked }
+            .map { $0.name.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .sorted()
+
+        let payload: [String: Any] = ["unlockedSkillNames": names]
+        let data = try! JSONSerialization.data(withJSONObject: payload, options: [.prettyPrinted])
+        return String(data: data, encoding: .utf8)!
+    }
+
+    /// One-tap export helpers (pick one)
+    func copyUnlockedToClipboard() {
+        UIPasteboard.general.string = makeUnlockedSkillsJSON()
+        print("✅ Copied unlocked skills JSON to clipboard.")
+    }
+
+    func printUnlockedToConsole() {
+        let s = makeUnlockedSkillsJSON()
+        print("==== UNLOCKED START ====\n\(s)\n==== UNLOCKED END ====")
+    }
+    
+    
+    // actually write to a file
+    func writeUnlockedJSONToFile(filename: String = "unlocked_skills.json") -> URL? {
+        let json = makeUnlockedSkillsJSON()
+        guard let data = json.data(using: .utf8) else { return nil }
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let url = docs.appendingPathComponent(filename)
+        do {
+            try data.write(to: url, options: .atomic)
+            print("✅ Wrote unlocked skills to:", url.path)
+            return url
+        } catch {
+            print("❌ Write failed:", error)
+            return nil
+        }
+    }
+    
+    // send to my python server
+    func postUnlockedToLocalhost() {
+        let json = makeUnlockedSkillsJSON().data(using: .utf8)!
+        var req = URLRequest(url: URL(string: "http://127.0.0.1:8765/")!)
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        Task {
+            do { _ = try await URLSession.shared.upload(for: req, from: json)
+                 print("✅ Posted to localhost, saved as ./data/unlocked_skills.json")
+            } catch { print("❌ Post failed:", error) }
+        }
+    }
+    
+    struct WorkoutRequest: Codable {
+        let minutes: Int
+        let band: String
+        let focus: [String]
+        let equipment: [String]
+        let unlocked: [String: [String]] // {"unlockedSkillNames": [...]}
+
+        init(minutes: Int, band: String, focus: [String], equipment: [String], unlockedNames: [String]) {
+            self.minutes = minutes
+            self.band = band
+            self.focus = focus
+            self.equipment = equipment
+            self.unlocked = ["unlockedSkillNames": unlockedNames]
+        }
+    }
+
+    func postUnlockedToPythonAPI(
+        minutes: Int = 40,
+        band: String = "intermediate",
+        focus: [String] = ["anterior deltoid","triceps","lats"],
+        equipment: [String] = ["floor","bar"],
+        baseURL: String = "http://127.0.0.1:8765/workout"
+    ) async throws -> String {
+        // Build unlocked list from in-memory state
+        let merged = progressionsByCategory.isEmpty ? defaultProgressions : progressionsByCategory
+        let unlockedNames = merged.values
+            .flatMap { $0 }
+            .flatMap { $0.steps }
+            .filter { $0.isUnlocked }
+            .map { $0.name.trimmingCharacters(in: .whitespacesAndNewlines) }
+
+        let reqBody = WorkoutRequest(
+            minutes: minutes, band: band, focus: focus, equipment: equipment, unlockedNames: unlockedNames
+        )
+        let data = try JSONEncoder().encode(reqBody)
+
+        var req = URLRequest(url: URL(string: baseURL)!)
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.httpBody = data
+
+        let (respData, resp) = try await URLSession.shared.data(for: req)
+        guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+            let text = String(data: respData, encoding: .utf8) ?? ""
+            throw NSError(domain: "WorkoutAPI", code: 1, userInfo: [NSLocalizedDescriptionKey: "Bad status: \( (resp as? HTTPURLResponse)?.statusCode ?? -1) \(text)"])
+        }
+        return String(data: respData, encoding: .utf8) ?? "{}"
+    }
+
+
+
 }

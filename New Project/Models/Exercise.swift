@@ -14,7 +14,7 @@ struct Exercise: Identifiable, Codable {
 //    let skills: [String] // skills this exercise builds towards, not sure if i'm using this
     let difficulty: Int
     let muscles: Muscles
-    let reps: String?  // ✅ NEW
+    var reps: String?  // ✅ NEW
     let requiredSkills: [String]
 
 
@@ -51,6 +51,39 @@ struct Exercise: Identifiable, Codable {
         try container.encode(requiredSkills, forKey: .requiredSkills)
     }
 }
+
+extension Exercise {
+    init(
+        id: UUID = UUID(),
+        name: String,
+        description: String,
+        difficulty: Int,
+        muscles: Muscles,
+        reps: String? = nil,
+        requiredSkills: [String] = []
+    ) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.difficulty = difficulty
+        self.muscles = muscles
+        self.reps = reps
+        self.requiredSkills = requiredSkills
+    }
+
+    func with(reps newReps: String?) -> Exercise {
+        Exercise(
+            id: id,
+            name: name,
+            description: description,
+            difficulty: difficulty,
+            muscles: muscles,
+            reps: newReps,
+            requiredSkills: requiredSkills
+        )
+    }
+}
+
 
 
 

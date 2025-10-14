@@ -1,0 +1,549 @@
+[
+  {
+    "name": "360 Push Up",
+    "description": "Explosive plyometric push-up where you launch off the floor and rotate 360° in the air before landing back into the next rep. Extremely advanced; prioritize safe landing and shoulder integrity.",
+    "difficulty": 8,
+    "muscles": {
+      "primary": [
+        "Pectoralis Major",
+        "Anterior Deltoid",
+        "Triceps Brachii"
+      ],
+      "secondary": [
+        "Serratus Anterior",
+        "Rectus Abdominis",
+        "Obliques"
+      ],
+      "tertiary": [
+        "Forearm Flexors",
+        "Forearm Extensors"
+      ]
+    },
+    "reps": "360 Push Up – 3 / 5 / 8",
+    "requiredSkills": [
+      "Clap Push Up",
+      "Archer Push Up"
+    ]
+  },
+  {
+    "name": "Advanced Tuck Planche",
+    "description": "Isometric planche progression with knees close to chest but hips opened relative to shoulders. Shoulders protracted and wrists under or slightly behind hips.",
+    "difficulty": 7,
+    "muscles": {
+      "primary": [
+        "Anterior Deltoid",
+        "Pectoralis Major",
+        "Triceps Brachii"
+      ],
+      "secondary": [
+        "Rectus Abdominis",
+        "Serratus Anterior"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors",
+        "Iliopsoas",
+        "Rectus Femoris",
+        "Sartorius"
+      ]
+    },
+    "reps": "Advanced Tuck Planche – 10s / 20s / 30s",
+    "requiredSkills": [
+      "Tuck Planche",
+      "Planche Lean",
+      "Pseudo Planche Push Up"
+    ]
+  },
+  {
+    "name": "Arch Hold",
+    "description": "Prone posterior-chain hold: squeeze glutes, lift chest, arms, and thighs off the floor while keeping neck neutral. The opposite of a hollow hold.",
+    "difficulty": 3,
+    "muscles": {
+      "primary": [
+        "Erector Spinae",
+        "Gluteus Maximus",
+        "Hamstrings"
+      ],
+      "secondary": [
+        "Lower Trapezius",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Calves"
+      ]
+    },
+    "reps": "Arch Hold – 20s / 30s / 40s",
+    "requiredSkills": []
+  },
+  {
+    "name": "Archer Pull Up",
+    "description": "Unilateral pull-up variation: pull toward one hand while the opposite arm remains extended, shifting most load to one side. Alternate sides each rep.",
+    "difficulty": 6,
+    "muscles": {
+      "primary": [
+        "Latissimus Dorsi",
+        "Biceps Brachii"
+      ],
+      "secondary": [
+        "Rhomboids",
+        "Middle Trapezius",
+        "Lower Trapezius"
+      ],
+      "tertiary": [
+        "Forearm Flexors",
+        "Forearm Extensors",
+        "Posterior Deltoid"
+      ]
+    },
+    "reps": "Archer Pull Up – 3 / 5 / 8",
+    "requiredSkills": [
+      "Pull Up"
+    ]
+  },
+  {
+    "name": "Archer Push Up",
+    "description": "Wide asymmetric push-up: one arm bends while the other remains extended, shifting most of the load to the bent side. Progression toward one-arm push-ups.",
+    "difficulty": 5,
+    "muscles": {
+      "primary": [
+        "Pectoralis Major",
+        "Anterior Deltoid",
+        "Triceps Brachii"
+      ],
+      "secondary": [
+        "Serratus Anterior",
+        "Rectus Abdominis",
+        "Obliques"
+      ],
+      "tertiary": [
+        "Forearm Flexors",
+        "Forearm Extensors"
+      ]
+    },
+    "reps": "Archer Push Up – 6 / 10 / 14",
+    "requiredSkills": [
+      "Archer Push Up"
+    ]
+  },
+  {
+    "name": "Back Lever",
+    "description": "Isometric hold on rings or bar with body facing down, hips extended, and shoulders in full extension. Keep a posterior pelvic tilt to protect the lower back.",
+    "difficulty": 7,
+    "muscles": {
+      "primary": [
+        "Latissimus Dorsi",
+        "Obliques",
+        "Rectus Abdominis",
+        "Transversus Abdominis"
+      ],
+      "secondary": [
+        "Gluteus Maximus",
+        "Gluteus Medius",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors"
+      ]
+    },
+    "reps": "Back Lever – 10s / 20s / 30s",
+    "requiredSkills": [
+      "Skin the Cat",
+      "Pull Up",
+      "Hollow Body Hold"
+    ]
+  },
+  {
+    "name": "Back Roll to Handstand",
+    "description": "Gymnastics skill: from a squat or pike, roll backward onto shoulders and use momentum plus a press to arrive in a handstand with locked elbows.",
+    "difficulty": 7,
+    "muscles": {
+      "primary": [
+        "Anterior Deltoid",
+        "Lateral Deltoid",
+        "Posterior Deltoid",
+        "Triceps Brachii",
+        "Upper Trapezius"
+      ],
+      "secondary": [
+        "Forearm Extensors",
+        "Forearm Flexors",
+        "Obliques",
+        "Rectus Abdominis",
+        "Transversus Abdominis"
+      ],
+      "tertiary": [
+        "Gluteus Maximus",
+        "Gluteus Medius"
+      ]
+    },
+    "reps": "Back Roll to Handstand – 3 / 5 / 8",
+    "requiredSkills": []
+  },
+  {
+    "name": "Bar Kips",
+    "description": "Dynamic beat/kipping swing on a bar generating momentum to transition from hang to support on top of the bar. Keep hollow↔arch rhythm tight.",
+    "difficulty": 6,
+    "muscles": {
+      "primary": [
+        "Iliopsoas",
+        "Obliques",
+        "Rectus Abdominis",
+        "Rectus Femoris",
+        "Sartorius",
+        "Transversus Abdominis"
+      ],
+      "secondary": [
+        "Anterior Deltoid",
+        "Erector Spinae",
+        "Lateral Deltoid",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Gluteus Maximus",
+        "Gluteus Medius"
+      ]
+    },
+    "reps": "Bar Kips – 5 / 10 / 15",
+    "requiredSkills": []
+  },
+  {
+    "name": "Cartwheel",
+    "description": "Lateral acrobatic move: place hands sequentially on the floor and rotate the body sideways, landing on the opposite foot. Emphasizes spatial awareness and shoulder loading.",
+    "difficulty": 4,
+    "muscles": {
+      "primary": [
+        "Iliopsoas",
+        "Obliques",
+        "Rectus Abdominis",
+        "Rectus Femoris",
+        "Sartorius",
+        "Transversus Abdominis"
+      ],
+      "secondary": [
+        "Anterior Deltoid",
+        "Erector Spinae",
+        "Lateral Deltoid",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Gluteus Maximus",
+        "Gluteus Medius"
+      ]
+    },
+    "reps": "Cartwheel – 8 / 12 / 20",
+    "requiredSkills": []
+  },
+  {
+    "name": "Clap Push Up",
+    "description": "Plyometric push-up exploding off the floor to clap hands before returning to the ground. Land softly with elbows slightly bent.",
+    "difficulty": 5,
+    "muscles": {
+      "primary": [
+        "Pectoralis Major",
+        "Anterior Deltoid",
+        "Triceps Brachii"
+      ],
+      "secondary": [
+        "Serratus Anterior",
+        "Rectus Abdominis",
+        "Obliques"
+      ],
+      "tertiary": [
+        "Forearm Flexors",
+        "Forearm Extensors"
+      ]
+    },
+    "reps": "Clap Push Up – 5 / 8 / 12",
+    "requiredSkills": []
+  },
+  {
+    "name": "Crow Pose",
+    "description": "Arm-balance with knees resting high on triceps, elbows bent, and shoulders protracted. Look slightly forward to maintain balance.",
+    "difficulty": 3,
+    "muscles": {
+      "primary": [
+        "Obliques",
+        "Rectus Abdominis",
+        "Transversus Abdominis"
+      ],
+      "secondary": [
+        "Anterior Deltoid",
+        "Lateral Deltoid",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors"
+      ]
+    },
+    "reps": "Crow Pose – 10s / 20s / 30s",
+    "requiredSkills": []
+  },
+  {
+    "name": "Diamond Push Up",
+    "description": "Close-grip push-up with hands under the sternum forming a diamond shape. Increases triceps and sternal-pec demand.",
+    "difficulty": 4,
+    "muscles": {
+      "primary": [
+        "Pectoralis Major",
+        "Anterior Deltoid",
+        "Triceps Brachii"
+      ],
+      "secondary": [
+        "Serratus Anterior",
+        "Rectus Abdominis",
+        "Obliques"
+      ],
+      "tertiary": [
+        "Forearm Flexors",
+        "Forearm Extensors"
+      ]
+    },
+    "reps": "Diamond Push Up – 8 / 12 / 20",
+    "requiredSkills": [
+      "Diamond Push Up"
+    ]
+  },
+  {
+    "name": "Dragon Flag",
+    "description": "Advanced core lever made famous by Bruce Lee: from shoulders-on-bench position, keep body rigid as you lower and raise as one unit without hip break.",
+    "difficulty": 8,
+    "muscles": {
+      "primary": [
+        "Latissimus Dorsi",
+        "Obliques"
+      ],
+      "secondary": [
+        "Anterior Deltoid",
+        "Forearm Extensors",
+        "Forearm Flexors",
+        "Lateral Deltoid",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Gluteus Maximus",
+        "Gluteus Medius"
+      ]
+    },
+    "reps": "Dragon Flag – 3 / 5 / 8",
+    "requiredSkills": [
+      "Dragon Flag"
+    ]
+  },
+  {
+    "name": "Elbow Lever",
+    "description": "Prone-facing balance with elbows resting on abdomen/hips and hands on the floor; body held parallel to the ground.",
+    "difficulty": 4,
+    "muscles": {
+      "primary": [
+        "Anterior Deltoid",
+        "Pectoralis Major",
+        "Triceps Brachii"
+      ],
+      "secondary": [
+        "Rectus Abdominis",
+        "Serratus Anterior"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors",
+        "Iliopsoas",
+        "Rectus Femoris",
+        "Sartorius"
+      ]
+    },
+    "reps": "Elbow Lever – 10s / 20s / 30s",
+    "requiredSkills": [
+      "Elbow Lever"
+    ]
+  },
+  {
+    "name": "Elbow Stand",
+    "description": "Forearm-supported inversion (pincha mayurasana). Shoulders stacked over elbows with active scapular elevation and a neutral ribcage.",
+    "difficulty": 5,
+    "muscles": {
+      "primary": [
+        "Obliques",
+        "Rectus Abdominis",
+        "Transversus Abdominis"
+      ],
+      "secondary": [
+        "Anterior Deltoid",
+        "Lateral Deltoid",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors"
+      ]
+    },
+    "reps": "Elbow Stand – 10s / 20s / 30s",
+    "requiredSkills": []
+  },
+  {
+    "name": "Explosive Pull Up",
+    "description": "Power pull-up aiming to pull the bar to chest or lower sternum. Useful for muscle-up preparation.",
+    "difficulty": 6,
+    "muscles": {
+      "primary": [
+        "Latissimus Dorsi",
+        "Biceps Brachii"
+      ],
+      "secondary": [
+        "Rhomboids",
+        "Middle Trapezius",
+        "Lower Trapezius"
+      ],
+      "tertiary": [
+        "Forearm Flexors",
+        "Forearm Extensors",
+        "Posterior Deltoid"
+      ]
+    },
+    "reps": "Explosive Pull Up – 3 / 5 / 8",
+    "requiredSkills": [
+      "Pull Up"
+    ]
+  },
+  {
+    "name": "Freestanding Handstand Push Up",
+    "description": "Strict handstand push-up performed without wall support. Requires balance plus overhead pressing strength.",
+    "difficulty": 9,
+    "muscles": {
+      "primary": [
+        "Anterior Deltoid",
+        "Pectoralis Major",
+        "Triceps Brachii"
+      ],
+      "secondary": [
+        "Rectus Abdominis",
+        "Serratus Anterior"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors",
+        "Iliopsoas",
+        "Rectus Femoris",
+        "Sartorius"
+      ]
+    },
+    "reps": "Freestanding Handstand Push Up – 1 / 3 / 5",
+    "requiredSkills": [
+      "Handstand",
+      "Wall Handstand Push Up"
+    ]
+  },
+  {
+    "name": "Front Lever",
+    "description": "Isometric hold on rings or bar with body facing up, hips extended, and torso parallel to ground. Maintain hollow body and shoulder depression.",
+    "difficulty": 8,
+    "muscles": {
+      "primary": [
+        "Latissimus Dorsi",
+        "Obliques",
+        "Rectus Abdominis",
+        "Transversus Abdominis"
+      ],
+      "secondary": [
+        "Gluteus Maximus",
+        "Gluteus Medius",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors"
+      ]
+    },
+    "reps": "Front Lever – 10s / 20s / 30s",
+    "requiredSkills": [
+      "Skin the Cat",
+      "Pull Up",
+      "Hollow Body Hold"
+    ]
+  },
+  {
+    "name": "Front Lever Pull Up",
+    "description": "Pull-ups performed while holding a front lever body line. Small ROM counts—quality before quantity.",
+    "difficulty": 9,
+    "muscles": {
+      "primary": [
+        "Latissimus Dorsi",
+        "Obliques",
+        "Rectus Abdominis",
+        "Transversus Abdominis"
+      ],
+      "secondary": [
+        "Gluteus Maximus",
+        "Gluteus Medius",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors"
+      ]
+    },
+    "reps": "Front Lever Pull Up – 3 / 5 / 8",
+    "requiredSkills": [
+      "Front Lever"
+    ]
+  },
+  {
+    "name": "Handstand",
+    "description": "Inversion balanced on hands with elbows locked, shoulders elevated, ribs stacked, and posterior pelvic tilt. Practice against a wall before freestanding.",
+    "difficulty": 6,
+    "muscles": {
+      "primary": [
+        "Anterior Deltoid",
+        "Lateral Deltoid",
+        "Posterior Deltoid",
+        "Triceps Brachii",
+        "Upper Trapezius"
+      ],
+      "secondary": [
+        "Forearm Extensors",
+        "Forearm Flexors",
+        "Obliques",
+        "Rectus Abdominis",
+        "Transversus Abdominis"
+      ],
+      "tertiary": [
+        "Gluteus Maximus",
+        "Gluteus Medius"
+      ]
+    },
+    "reps": "Handstand – 20s / 40s / 60s",
+    "requiredSkills": [
+      "Handstand"
+    ]
+  },
+  {
+    "name": "Handstand Push Up",
+    "description": "Vertical pressing in a handstand, typically performed against a wall for stability. Aim for full ROM: head to floor and lockout.",
+    "difficulty": 7,
+    "muscles": {
+      "primary": [
+        "Anterior Deltoid",
+        "Pectoralis Major",
+        "Triceps Brachii"
+      ],
+      "secondary": [
+        "Rectus Abdominis",
+        "Serratus Anterior"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors",
+        "Iliopsoas",
+        "Rectus Femoris",
+        "Sartorius"
+      ]
+    },
+    "reps": "Handstand Push Up – 3 / 5 / 8",
+    "requiredSkills": [
+      "Wall Handstand",
+      "Wall Handstand Push Up"
+    ]
+  },
+  
+]

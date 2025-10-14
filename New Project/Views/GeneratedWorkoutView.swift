@@ -38,7 +38,7 @@ struct GeneratedWorkoutView: View {
     var body: some View {
         VStack(spacing: 20) {
             Button {
-                viewModel.generateWorkout()
+                Task { await viewModel.generateWorkoutWithAI() }
             } label: {
                 Text("Generate Workout")
                     .font(.headline)
@@ -48,6 +48,7 @@ struct GeneratedWorkoutView: View {
                     .foregroundColor(.white)
                     .cornerRadius(12)
             }
+
 
             if viewModel.generatedWorkout.isEmpty {
                 Text("No workout yet. Tap the button!")

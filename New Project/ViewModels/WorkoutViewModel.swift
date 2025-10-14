@@ -4,14 +4,11 @@
 //
 //  Created by Celeste van Dokkum on 8/6/25.
 //
-import SwiftUI
-
-import Foundation
 
 import Foundation
 import SwiftUI
 
-// --- API config (dev vs prod) ---
+// MARK: - API config (dev vs prod)
 private enum API {
     #if DEBUG
     static let baseURL = URL(string: "http://127.0.0.1:8000")!
@@ -20,7 +17,7 @@ private enum API {
     #endif
 }
 
-// --- DTOs that match the FastAPI /plan endpoint ---
+// MARK: - DTOs matching FastAPI /plan
 private struct PlanRequestDTO: Codable {
     let target_muscles: [String]
     let number_of_exercises: Int
@@ -28,10 +25,13 @@ private struct PlanRequestDTO: Codable {
     let max_difficulty: Int
     let user_skills: [String]
     let gate_by_skills: Bool
+    let use_llm: Bool                 // AI selection + AI reps
+    let goal: String?                 // optional coaching context
+    let session_minutes: Int?         // optional
 }
 
 private struct PlanExerciseDTO: Codable, Identifiable {
-    var id: String { name }            // use name as stable id
+    var id: String { name }           // use name as a stable id
     let name: String
     let description: String
     let difficulty: Int
@@ -44,18 +44,19 @@ private struct PlanResponseDTO: Codable {
     let notes: [String]
 }
 
-
-class WorkoutViewModel: ObservableObject {
+// MARK: - ViewModel
+@MainActor
+final class WorkoutViewModel: ObservableObject {
+    // Data
     @Published var allExercises: [Exercise] = []
+    @Published var generatedWorkout: [Exercise] = []
+
+    // Selections
     @Published var selectedMuscles: [String] = []
     @Published var selectedSkills: [String] = []
-    @Published var generatedWorkout: [Exercise] = []
-    
-    @Published var trainingFocusScores: [String: Int] = [:]
-    
-    @Published var aiFocusScores: [(muscle: String, score: Int)] = []
-    @Published var aiNotes: [String] = []
 
+    // Focus summary used by your UI
+    @Published var trainingFocusScores: [String: Int] = [:]
 
     var trainingFocusSkillName: String? {
         selectedSkills.count == 1 ? selectedSkills.first : nil
@@ -65,11 +66,15 @@ class WorkoutViewModel: ObservableObject {
         trainingFocusScores.sorted { $0.value > $1.value }
     }
 
+    // Persisted skill progressions
+    @AppStorage("skillProgressions.v1") private var savedProgressionData: Data = Data()
 
+    // Init
     init() {
         loadExercises()
     }
 
+    // MARK: - Loading local dataset
     func loadExercises() {
         guard let url = Bundle.main.url(forResource: "exercises", withExtension: "json"),
               let data = try? Data(contentsOf: url),
@@ -77,12 +82,12 @@ class WorkoutViewModel: ObservableObject {
             print("🚨 Failed to load exercises.json")
             return
         }
-
         print("✅ Loaded \(decoded.count) exercises")
         self.allExercises = decoded
     }
-    
-//    added
+
+    // MARK: - AI plan (FastAPI)
+    /// Derive key muscles from the single selected skill (returns [] if 0 or >1 skills selected)
     private func keyMusclesFromSelectedSkill() -> [String] {
         guard selectedSkills.count == 1,
               let chosen = selectedSkills.first,
@@ -92,22 +97,29 @@ class WorkoutViewModel: ObservableObject {
         let keys = Set(reference.muscles.primary + reference.muscles.secondary + reference.muscles.tertiary)
         return Array(keys)
     }
-    
+
+    /// Calls the FastAPI /plan endpoint and maps results back to your Exercise model
     func generateWorkoutWithAI() async {
-        let targets = keyMusclesFromSelectedSkill()
+        // Use target muscles from single selected skill if present;
+        // otherwise fall back to whatever is in selectedMuscles.
+        let targets = keyMusclesFromSelectedSkill().isEmpty ? selectedMuscles : keyMusclesFromSelectedSkill()
         guard !targets.isEmpty else {
-            // Optional: clear or fall back to your local generator
+            print("⚠️ AI: no targets. Select a skill or some muscles.")
             self.generatedWorkout = []
+            self.trainingFocusScores = [:]
             return
         }
 
         let body = PlanRequestDTO(
             target_muscles: targets,
-            number_of_exercises: 6,
+            number_of_exercises: 8,               // tweak to taste
             min_difficulty: 1,
             max_difficulty: 10,
-            user_skills: [],            // fill if you track unlocked skills
-            gate_by_skills: false
+            user_skills: Array(unlockedSkillsFromProgressions()),
+            gate_by_skills: true,                 // hide items requiring locked skills
+            use_llm: true,                        // 🔹 AI selection + reps
+            goal: trainingFocusSkillName ?? "Balanced, fun session with variety",
+            session_minutes: 45
         )
 
         var req = URLRequest(url: API.baseURL.appendingPathComponent("plan"))
@@ -119,51 +131,50 @@ class WorkoutViewModel: ObservableObject {
             let (data, _) = try await URLSession.shared.data(for: req)
             let dto = try JSONDecoder().decode(PlanResponseDTO.self, from: data)
 
-            // Map DTO -> your app's Exercise model
-            self.generatedWorkout = dto.plan.map { p in
-                Exercise(
-                    id: UUID(),  // if your Exercise uses a String id, use p.id
-                    name: p.name,
-                    reps: p.reps,
-                    muscles: .init(primary: [], secondary: [], tertiary: [])
-                )
+            print("✅ AI returned \(dto.plan.count) items: \(dto.plan.map { $0.name })")
+
+            // ---- NAME-NORMALIZED MATCH WITH FALLBACK ----
+            func normalize(_ s: String) -> String {
+                s.lowercased()
+                 .replacingOccurrences(of: "–", with: "-")
+                 .replacingOccurrences(of: "’", with: "'")
+                 .replacingOccurrences(of: " push ups", with: " push up")
+                 .trimmingCharacters(in: .whitespacesAndNewlines)
             }
 
-            // Save focus scores and notes if you want to show them
-            self.aiFocusScores = dto.focus_scores
-                .sorted { ($0.value, $0.key) > ($1.value, $1.key) }
-                .map { ($0.key, $0.value) }
-            self.aiNotes = dto.notes
+            let mapped: [Exercise] = dto.plan.map { item in
+                // try exact, then normalized name match
+                if let ref = allExercises.first(where: { $0.name == item.name }) {
+                    var e = ref; e.reps = item.reps; return e
+                } else if let ref = allExercises.first(where: { normalize($0.name) == normalize(item.name) }) {
+                    var e = ref; e.reps = item.reps; return e
+                } else {
+                    // fallback: still show it so UI isn’t empty
+                    return Exercise(
+                        id: UUID(),
+                        name: item.name,
+                        description: item.description,
+                        difficulty: item.difficulty,
+                        muscles: Exercise.Muscles(primary: [], secondary: [], tertiary: []),
+                        reps: item.reps,
+                        requiredSkills: []
+                    )
+                }
+            }
+            self.generatedWorkout = mapped
+            self.trainingFocusScores = dto.focus_scores
 
+            print("📋 mapped \(self.generatedWorkout.count) items.")
         } catch {
-            print("AI plan fetch failed:", error)
-            // Optional: fall back to local generator on failure
-            // self.generateWorkout()
+            print("❌ AI plan fetch failed:", error)
+            self.generatedWorkout = []
+            self.trainingFocusScores = [:]
         }
     }
 
-    
-        //---------
-
-    
-
-    
-    // helper function for generateWorkout
-    private func score(exercise: Exercise, primary: Set<String>, secondary: Set<String>, tertiary: Set<String>) -> Int {
-        var score = 0
-        for m in exercise.muscles.primary { if primary.contains(m) { score += 6 } } // primary muscles line up
-        for m in exercise.muscles.secondary { if primary.contains(m) { score += 3 } } // secondary ex is primary in skill
-        for m in exercise.muscles.tertiary { if primary.contains(m) { score += 1 } } // tertiary in ex is primary in skill
-        for m in exercise.muscles.primary { if secondary.contains(m) { score += 4 } } // primary in ex is secondary in skill
-        for m in exercise.muscles.secondary { if secondary.contains(m) { score += 3 } } // secondaries line up
-        for m in exercise.muscles.primary { if tertiary.contains(m) { score += 1 } }
-        return score
-    }
-
+    // MARK: - Local generator (fallback / offline)
     func generateWorkout(count: Int = 8) {
-        defer {
-            if selectedSkills.count != 1 { trainingFocusScores = [:] }
-        }
+        defer { if selectedSkills.count != 1 { trainingFocusScores = [:] } }
 
         if let skill = selectedSkills.first,
            let skillExercise = allExercises.first(where: { $0.name == skill }) {
@@ -180,32 +191,26 @@ class WorkoutViewModel: ObservableObject {
                 return total
             }
 
-            // Prioritize by score, then mix up the top pool so each tap varies
-            let unlockedSkills = unlockedSkillsFromProgressions()
-            
-            print("Unlocked:", unlockedSkillsFromProgressions())
-
-
+            let unlocked = unlockedSkillsFromProgressions()
             let eligibleExercises = allExercises.filter { ex in
-                ex.requiredSkills.allSatisfy { unlockedSkills.contains($0) }
+                ex.requiredSkills.allSatisfy { unlocked.contains($0) }
             }
 
-            // ✅ Use filtered list
-            let ranked = eligibleExercises
-                .map { ($0, score($0)) }
-                .sorted { $0.1 > $1.1 }
-                .map { $0.0 }
-            
-            if eligibleExercises.isEmpty {
+            guard !eligibleExercises.isEmpty else {
                 print("⚠️ No eligible exercises available for current skill unlocks.")
                 generatedWorkout = []
                 return
             }
 
+            let ranked = eligibleExercises
+                .map { ($0, score($0)) }
+                .sorted { $0.1 > $1.1 }
+                .map { $0.0 }
+
             let pool = Array(ranked.prefix(max(count * 2, 12)))
             generatedWorkout = Array(pool.shuffled().prefix(count))
 
-            // Compute bottom “Training Focus” scores based on generatedWorkout
+            // Compute Training Focus from the generated workout
             var scores: [String: Int] = [:]
             let important = primaryMuscles.union(secondaryMuscles).union(tertiaryMuscles)
             for ex in generatedWorkout {
@@ -218,11 +223,11 @@ class WorkoutViewModel: ObservableObject {
         }
 
         // Fallback: muscle-based, filtered by unlocked skills
-        let unlockedSkills = unlockedSkillsFromProgressions()
+        let unlocked = unlockedSkillsFromProgressions()
         let muscleSet = Set(selectedMuscles)
 
         let eligibleExercises = allExercises.filter { ex in
-            ex.requiredSkills.allSatisfy { unlockedSkills.contains($0) }
+            ex.requiredSkills.allSatisfy { unlocked.contains($0) }
         }
 
         generatedWorkout = eligibleExercises
@@ -234,12 +239,9 @@ class WorkoutViewModel: ObservableObject {
             .shuffled()
             .prefix(count)
             .map { $0 }
-
     }
 
-
-
-    
+    // MARK: - Grouping helpers (unchanged)
     struct MuscleGroupSection: Identifiable {
         let id = UUID()
         let groupName: String
@@ -249,14 +251,12 @@ class WorkoutViewModel: ObservableObject {
 
     func groupedByMuscle() -> [MuscleGroupSection] {
         var grouped: [String: [String: [Exercise]]] = [:]
-
         for exercise in allExercises {
             for muscle in exercise.muscles.primary {
                 let group = muscleGroup(for: muscle)
                 grouped[group, default: [:]][muscle, default: []].append(exercise)
             }
         }
-
         return grouped.flatMap { groupName, musclesDict in
             musclesDict.map { muscle, exercises in
                 MuscleGroupSection(groupName: groupName, muscleName: muscle, exercises: exercises)
@@ -269,38 +269,25 @@ class WorkoutViewModel: ObservableObject {
         return Array(Set(all)).sorted()
     }
 
-    
-    // You can expand this as needed
     func muscleGroup(for muscle: String) -> String {
         switch muscle {
-        case "Rectus Abdominis", "Obliques", "Transversus Abdominis":
-            return "Core"
-        case "Anterior Deltoid", "Lateral Deltoid", "Posterior Deltoid":
-            return "Shoulders"
-        case "Latissimus Dorsi", "Upper Trapezius", "Rhomboids", "Lower Trapezius", "Middle Trapezius":
-            return "Back"
-        case "Gluteus Maximus", "Gluteus Medius":
-            return "Glutes"
-        case "Rectus Femoris", "Sartorius", "Quadriceps":
-            return "Legs"
-        case "Forearm Flexors", "Forearm Extensors":
-            return "Forearms"
-        case "Triceps Brachii", "Biceps Brachii":
-            return "Arms"
-        case "Pectoralis Major", "Pectoralis Minor":
-            return "Chest"
-        default:
-            return "Other"
+        case "Rectus Abdominis", "Obliques", "Transversus Abdominis": return "Core"
+        case "Anterior Deltoid", "Lateral Deltoid", "Posterior Deltoid": return "Shoulders"
+        case "Latissimus Dorsi", "Upper Trapezius", "Rhomboids", "Lower Trapezius", "Middle Trapezius": return "Back"
+        case "Gluteus Maximus", "Gluteus Medius": return "Glutes"
+        case "Rectus Femoris", "Sartorius", "Quadriceps": return "Legs"
+        case "Forearm Flexors", "Forearm Extensors": return "Forearms"
+        case "Triceps Brachii", "Biceps Brachii": return "Arms"
+        case "Pectoralis Major", "Pectoralis Minor": return "Chest"
+        default: return "Other"
         }
     }
-    
-    @AppStorage("skillProgressions.v1") private var savedProgressionData: Data = Data()
 
+    // MARK: - Progressions
     func unlockedSkillsFromProgressions() -> Set<String> {
         guard let saved = try? JSONDecoder().decode([String: [Progression]].self, from: savedProgressionData) else {
             return []
         }
-
         var unlocked: Set<String> = []
         for (_, progressions) in saved {
             for progression in progressions {
@@ -309,17 +296,6 @@ class WorkoutViewModel: ObservableObject {
                 }
             }
         }
-        
-//        print("Unlocked:", unlockedSkillsFromProgressions())
-
-        
         return unlocked
     }
-
-    
-
-
-
 }
-
-
