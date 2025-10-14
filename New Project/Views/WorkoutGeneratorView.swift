@@ -2,8 +2,9 @@
 //  WorkoutGeneratorView.swift
 //  New Project
 //
-//  Branded UI: soft gradient blobs, slim corners, exclusive selection logic,
-//  FIXED: Generate now programmatically navigates (can’t get stuck disabled)
+//  Branded UI + Collapsible muscle groups with group-select,
+//  exclusive selection logic (muscle clears skill; skill clears muscles),
+//  and programmatic Generate navigation.
 //
 
 import SwiftUI
@@ -26,10 +27,77 @@ private enum BrandTheme {
     }
 }
 
+// MARK: - Muscle grouping model
+
+private enum MuscularRegion: String, CaseIterable {
+    case shoulders, chest, back, arms, core, legs, other
+
+    var displayName: String {
+        switch self {
+        case .shoulders: return "Shoulders"
+        case .chest:     return "Chest"
+        case .back:      return "Back"
+        case .arms:      return "Arms"
+        case .core:      return "Core"
+        case .legs:      return "Legs"
+        case .other:     return "Other"
+        }
+    }
+
+    static var displayOrder: [MuscularRegion] {
+        [.shoulders, .chest, .back, .arms, .core, .legs, .other]
+    }
+}
+
+private struct MuscleGrouping {
+    /// Classify free-form muscle names into regions by simple keyword matching.
+    static func groups(from allMuscleNames: [String]) -> [MuscularRegion: [String]] {
+        var result: [MuscularRegion: [String]] = [:]
+        for name in allMuscleNames {
+            let region = classify(name)
+            result[region, default: []].append(name)
+        }
+        // Keep each group's muscles sorted for stable UI
+        for key in result.keys {
+            result[key]?.sort()
+        }
+        return result
+    }
+
+    private static func classify(_ rawName: String) -> MuscularRegion {
+        let s = rawName.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+
+        // Shoulders / delts
+        if s.contains("shoulder") || s.contains("deltoid") || s.contains("delt") { return .shoulders }
+
+        // Chest / pecs
+        if s.contains("chest") || s.contains("pec") || s.contains("pector") { return .chest }
+
+        // Back (lats / traps / rhomboids / erectors / lower back)
+        if s.contains("back") || s.contains("lat") || s.contains("trap") ||
+           s.contains("rhomboid") || s.contains("erector") { return .back }
+
+        // Arms (biceps / triceps / forearms / brachialis)
+        if s.contains("bicep") || s.contains("tricep") || s.contains("forearm") ||
+           s.contains("brachialis") || s.contains("brachioradialis") || s == "arms" { return .arms }
+
+        // Core (abs / obliques / transverse)
+        if s.contains("core") || s.contains("abs") || s.contains("abdom") ||
+           s.contains("oblique") || s.contains("transverse") { return .core }
+
+        // Legs (quads / hamstrings / glutes / calves / adductors / abductors / hips)
+        if s.contains("leg") || s.contains("quad") || s.contains("hamstring") ||
+           s.contains("glute") || s.contains("calf") || s.contains("adductor") ||
+           s.contains("abductor") || s.contains("hip") { return .legs }
+
+        return .other
+    }
+}
+
 struct WorkoutGeneratorView: View {
     @ObservedObject var viewModel: WorkoutViewModel
     @Namespace private var selectionNamespace
-    @State private var navigateToGenerated = false   // <- programmatic nav flag
+    @State private var navigateToGenerated = false
 
     private var canGenerate: Bool {
         !viewModel.selectedMuscles.isEmpty || !viewModel.selectedSkills.isEmpty
@@ -53,7 +121,7 @@ struct WorkoutGeneratorView: View {
                 .navigationTitle("Generate Workout")
                 .navigationBarTitleDisplayMode(.inline)
 
-                // Hidden NavigationLink that we trigger with a button
+                // Hidden NavigationLink driven by button
                 NavigationLink(
                     destination: GeneratedWorkoutView(viewModel: viewModel),
                     isActive: $navigateToGenerated
@@ -83,7 +151,7 @@ struct WorkoutGeneratorView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(BrandTheme.accent1)
-                .disabled(!canGenerate)  // <- enables as soon as you pick a muscle OR a skill
+                .disabled(!canGenerate)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
@@ -92,18 +160,18 @@ struct WorkoutGeneratorView: View {
     }
 
     private var summaryText: String {
-        let m = viewModel.selectedMuscles.count
-        let s = viewModel.selectedSkills.count
-        switch (m, s) {
-        case (0, 0): return "Choose muscles or one skill"
-        case (_, 0): return "\(m) muscle\(m == 1 ? "" : "s") selected"
-        case (0, _): return "Skill: \(viewModel.selectedSkills.first ?? "")"
-        default:     return "Skill overrides muscles (cleared)"
+        let muscleCount = viewModel.selectedMuscles.count
+        if !viewModel.selectedSkills.isEmpty {
+            return "Skill: \(viewModel.selectedSkills.first ?? "")"
+        } else if muscleCount > 0 {
+            return "\(muscleCount) muscle\(muscleCount == 1 ? "" : "s") selected"
+        } else {
+            return "Choose muscles or one skill"
         }
     }
 }
 
-// MARK: - Background (soft blobs only)
+// MARK: - Background (soft blobs)
 
 private struct BrandedBlobBackground: View {
     var body: some View {
@@ -206,61 +274,130 @@ private struct SelectableChip: View {
     }
 }
 
-// MARK: - Muscle Groups (multi-select; selecting a muscle clears skill)
+// MARK: - Muscle Groups (collapsible with group-select)
+// Selecting a child muscle clears any selected skill.
+// MARK: - Muscle Groups (collapsible with group-select)
 
 extension WorkoutGeneratorView {
     struct MuscleGroupSection: View {
         @ObservedObject var viewModel: WorkoutViewModel
         let selectionNamespace: Namespace.ID
 
-        private let columns = [GridItem(.adaptive(minimum: 120), spacing: BrandTheme.gridSpacing)]
+        // which regions are expanded
+        @State private var expandedRegions: Set<MuscularRegion> = []
+
+        // layout for child chips
+        private let chipColumns = [GridItem(.adaptive(minimum: 120), spacing: BrandTheme.gridSpacing)]
 
         var body: some View {
+            // Build groups once and pre-filter non-empty regions
+            let grouped = MuscleGrouping.groups(from: viewModel.allMuscleGroups)
+            let regions = MuscularRegion.displayOrder.filter { !(grouped[$0]?.isEmpty ?? true) }
+
             VStack(alignment: .leading, spacing: 10) {
                 SectionHeader(
                     title: "Muscle Groups",
-                    subtitle: "Selecting a muscle will clear any selected skill."
+                    subtitle: "Select a whole region or expand to choose specifics."
                 )
 
-                LazyVGrid(columns: columns, spacing: BrandTheme.gridSpacing) {
-                    ForEach(viewModel.allMuscleGroups.sorted(), id: \.self) { muscle in
-                        let isSelected = viewModel.selectedMuscles.contains(muscle)
-                        SelectableChip(
-                            title: muscle,
-                            isSelected: isSelected,
-                            isDisabled: false,
-                            selectionNamespace: selectionNamespace
-                        ) {
-                            withHaptics {
-                                if isSelected {
-                                    viewModel.selectedMuscles.removeAll { $0 == muscle }
-                                } else {
-                                    if !viewModel.selectedMuscles.contains(muscle) {
-                                        viewModel.selectedMuscles.append(muscle)
+                VStack(spacing: 10) {
+                    ForEach(regions, id: \.self) { region in
+                        if let muscles = grouped[region] {
+                            let selectedInGroup = muscles.filter { viewModel.selectedMuscles.contains($0) }
+                            let isAllSelected = !muscles.isEmpty && selectedInGroup.count == muscles.count
+                            let isPartiallySelected = !selectedInGroup.isEmpty && !isAllSelected
+
+                            DisclosureGroup(
+                                isExpanded: Binding(
+                                    get: { expandedRegions.contains(region) },
+                                    set: { newValue in
+                                        if newValue { expandedRegions.insert(region) }
+                                        else { expandedRegions.remove(region) }
                                     }
-                                    // clear any selected skill when a muscle is chosen
-                                    if !viewModel.selectedSkills.isEmpty {
-                                        viewModel.selectedSkills = []
+                                )
+                            ) {
+                                // CHILD CHIPS
+                                LazyVGrid(columns: chipColumns, spacing: BrandTheme.gridSpacing) {
+                                    ForEach(muscles, id: \.self) { muscle in
+                                        let isSelected = viewModel.selectedMuscles.contains(muscle)
+                                        SelectableChip(
+                                            title: muscle,
+                                            isSelected: isSelected,
+                                            isDisabled: false,
+                                            selectionNamespace: selectionNamespace
+                                        ) {
+                                            withHaptics {
+                                                if isSelected {
+                                                    viewModel.selectedMuscles.removeAll { $0 == muscle }
+                                                } else {
+                                                    if !viewModel.selectedMuscles.contains(muscle) {
+                                                        viewModel.selectedMuscles.append(muscle)
+                                                    }
+                                                    // Clear any selected skill when a muscle is chosen
+                                                    if !viewModel.selectedSkills.isEmpty {
+                                                        viewModel.selectedSkills = []
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
+                                .padding(.top, 6)
+                            } label: {
+                                // HEADER ROW (tri-state select)
+                                HStack(spacing: 12) {
+                                    Text(region.displayName)
+                                        .font(.headline)
+                                    Spacer()
+                                    Text("\(selectedInGroup.count)/\(muscles.count)")
+                                        .font(.footnote)
+                                        .foregroundStyle(.secondary)
+
+                                    Button {
+                                        withHaptics {
+                                            if isAllSelected {
+                                                // clear all in this region
+                                                for m in muscles {
+                                                    viewModel.selectedMuscles.removeAll { $0 == m }
+                                                }
+                                            } else {
+                                                // select all in this region
+                                                for m in muscles where !viewModel.selectedMuscles.contains(m) {
+                                                    viewModel.selectedMuscles.append(m)
+                                                }
+                                                if !viewModel.selectedSkills.isEmpty {
+                                                    viewModel.selectedSkills = []
+                                                }
+                                            }
+                                        }
+                                    } label: {
+                                        Image(systemName: isAllSelected
+                                              ? "checkmark.square.fill"
+                                              : (isPartiallySelected ? "minus.square" : "square"))
+                                            .imageScale(.large)
+                                            .foregroundStyle(BrandTheme.accent1)
+                                    }
+                                    .buttonStyle(.plain)
+                                }
                             }
+                            .padding(12)
+                            .background(
+                                RoundedRectangle(cornerRadius: BrandTheme.cardCorner, style: .continuous)
+                                    .fill(BrandTheme.cardBG)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: BrandTheme.cardCorner, style: .continuous)
+                                            .stroke(BrandTheme.separator.opacity(0.35), lineWidth: 1)
+                                    )
+                            )
                         }
                     }
                 }
-                .padding(12)
-                .background(
-                    RoundedRectangle(cornerRadius: BrandTheme.cardCorner, style: .continuous)
-                        .fill(BrandTheme.cardBG)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: BrandTheme.cardCorner, style: .continuous)
-                                .stroke(BrandTheme.separator.opacity(0.35), lineWidth: 1)
-                        )
-                )
             }
             .padding(.horizontal, 16)
         }
     }
 }
+
 
 // MARK: - Skills (exclusive; selecting a skill clears all muscles)
 
@@ -269,10 +406,10 @@ extension WorkoutGeneratorView {
         @ObservedObject var viewModel: WorkoutViewModel
         let selectionNamespace: Namespace.ID
 
-        @Environment(\.horizontalSizeClass) private var hSize
+        @Environment(\.horizontalSizeClass) private var horizontalSizeClass
         private var columns: [GridItem] {
             Array(repeating: GridItem(.flexible(), spacing: BrandTheme.gridSpacing),
-                  count: (hSize == .compact) ? 2 : 3)
+                  count: (horizontalSizeClass == .compact) ? 2 : 3)
         }
 
         var body: some View {
