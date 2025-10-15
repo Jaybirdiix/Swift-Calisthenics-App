@@ -26,10 +26,9 @@ private enum BrandTheme {
         LinearGradient(colors: [accent1, accent2], startPoint: .leading, endPoint: .trailing)
     }
 }
+// MARK: - Muscle grouping model (hard-coded)
 
-// MARK: - Muscle grouping model
-
-private enum MuscularRegion: String, CaseIterable {
+fileprivate enum MuscularRegion: String, CaseIterable, Hashable {
     case shoulders, chest, back, arms, core, legs, other
 
     var displayName: String {
@@ -49,50 +48,110 @@ private enum MuscularRegion: String, CaseIterable {
     }
 }
 
-private struct MuscleGrouping {
-    /// Classify free-form muscle names into regions by simple keyword matching.
+fileprivate struct MuscleGrouping {
+    // Canonical, normalized names → region
+    // (See `normalize(_:)`. Add/edit lines here if you want to tweak placement.)
+    private static let HARD_MAP: [String: MuscularRegion] = [
+        // Shoulders
+        "anterior deltoid": .shoulders,
+        "lateral deltoid": .shoulders,
+        "posterior deltoid": .shoulders,
+        "rotator cuff": .shoulders,
+        "serratus anterior": .shoulders,
+
+        // Chest
+        "pectoralis major": .chest,
+        "pectoralis minor": .chest,
+
+        // Back / upper back
+        "erector spinae": .back,
+        "latissimus dorsi": .back,
+        "lower trapezius": .back,
+        "middle trapezius": .back,
+        "upper trapezius": .back,
+        "trapezius": .back,   // fallback
+        "rhomboids": .back,
+        "teres major": .back,
+
+        // Arms & forearms
+        "biceps brachii": .arms,
+        "triceps brachii": .arms,
+        "triceps brachii longhead": .arms,
+        "forearm flexors": .arms,
+        "forearm extension": .arms,
+        "forearm extensors": .arms,
+
+        // Core
+        "obliques": .core,
+        "rectus abdominis": .core,
+        "transversus abdominis": .core,
+        "quadratus lumborum": .core,  // choose Core; switch to .back if you prefer
+
+        // Legs / hips
+        "gluteus maximus": .legs,
+        "gluteus medius": .legs,
+        "hamstrings": .legs,
+        "quadriceps": .legs,
+        "rectus femoris": .legs,
+        "calves": .legs,
+        "iliopsoas": .legs,
+        "sartorius": .legs,
+        "tensor fasciae latae": .legs
+    ]
+
     static func groups(from allMuscleNames: [String]) -> [MuscularRegion: [String]] {
         var result: [MuscularRegion: [String]] = [:]
-        for name in allMuscleNames {
-            let region = classify(name)
-            result[region, default: []].append(name)
+        for original in allMuscleNames {
+            let region = regionFor(original)
+            result[region, default: []].append(original)
         }
-        // Keep each group's muscles sorted for stable UI
-        for key in result.keys {
-            result[key]?.sort()
-        }
+        for key in result.keys { result[key]?.sort() }
         return result
     }
 
-    private static func classify(_ rawName: String) -> MuscularRegion {
-        let s = rawName.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    // Robust lookup: exact normalized match first, then tolerant substring fallbacks
+    private static func regionFor(_ name: String) -> MuscularRegion {
+        let n = normalize(name)
+        if let exact = HARD_MAP[n] { return exact }
 
-        // Shoulders / delts
-        if s.contains("shoulder") || s.contains("deltoid") || s.contains("delt") { return .shoulders }
-
-        // Chest / pecs
-        if s.contains("chest") || s.contains("pec") || s.contains("pector") { return .chest }
-
-        // Back (lats / traps / rhomboids / erectors / lower back)
-        if s.contains("back") || s.contains("lat") || s.contains("trap") ||
-           s.contains("rhomboid") || s.contains("erector") { return .back }
-
-        // Arms (biceps / triceps / forearms / brachialis)
-        if s.contains("bicep") || s.contains("tricep") || s.contains("forearm") ||
-           s.contains("brachialis") || s.contains("brachioradialis") || s == "arms" { return .arms }
-
-        // Core (abs / obliques / transverse)
-        if s.contains("core") || s.contains("abs") || s.contains("abdom") ||
-           s.contains("oblique") || s.contains("transverse") { return .core }
-
-        // Legs (quads / hamstrings / glutes / calves / adductors / abductors / hips)
-        if s.contains("leg") || s.contains("quad") || s.contains("hamstring") ||
-           s.contains("glute") || s.contains("calf") || s.contains("adductor") ||
-           s.contains("abductor") || s.contains("hip") { return .legs }
+        // tolerate truncated or slightly different labels (e.g., “tensor fasciae…”, “transversus abdomi…”)
+        if n.contains("tensor fasciae") || n == "tfl" { return .legs }
+        if n.contains("transversus abdom") || n.contains("transverse abdom") { return .core }
+        if n.contains("latissimus") { return .back }
+        if n.contains("erector spinae") { return .back }
+        if n.contains("trapezius") { return .back }
+        if n.contains("rhomboid") { return .back }
+        if n.contains("deltoid") { return .shoulders }
+        if n.contains("pec") { return .chest }
+        if n.contains("oblique") { return .core }
+        if n.contains("rectus abdom") { return .core }
+        if n.contains("gluteus") { return .legs }
+        if n.contains("hamstring") { return .legs }
+        if n.contains("quad") || n.contains("rectus femoris") { return .legs }
+        if n.contains("calf") { return .legs }
+        if n.contains("iliopsoas") || n.contains("psoas") { return .legs }
+        if n.contains("sartorius") { return .legs }
+        if n.contains("bicep") || n.contains("tricep") { return .arms }
+        if n.contains("forearm") { return .arms }
+        if n.contains("rotator cuff") { return .shoulders }
+        if n.contains("serratus") { return .shoulders }
+        if n.contains("teres major") { return .back }
 
         return .other
     }
+
+    private static func normalize(_ s: String) -> String {
+        var t = s.lowercased()
+        t = t.replacingOccurrences(of: "…", with: "")      // unicode ellipsis
+        t = t.replacingOccurrences(of: "...", with: "")    // three-dot ellipsis
+        // strip punctuation/parentheses/commas/periods
+        t = t.replacingOccurrences(of: "[()\\.,]", with: "", options: .regularExpression)
+        // collapse whitespace
+        t = t.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+        return t.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
+
 
 struct WorkoutGeneratorView: View {
     @ObservedObject var viewModel: WorkoutViewModel

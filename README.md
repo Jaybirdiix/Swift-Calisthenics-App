@@ -7,7 +7,7 @@
 
 # Calisthenics Workout Generator (iOS)
 
-A Swift/SwiftUI app that tracks your calisthenics progress and auto‑generates smart workouts tailored to your skills, equipment, and goals. Built with an emphasis on **progressive overload**, **skill trees**, and **clean, extensible architecture**.
+A Swift/SwiftUI app that tracks your calisthenics progress over time and auto‑generates workouts tailored to the equipment you have available to you, your current abilities and your goals. 
 
 ---
 
