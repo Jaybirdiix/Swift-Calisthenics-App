@@ -6,11 +6,13 @@ This is a (currently in development) Swift app that tracks your calisthenics pro
 
 #### Exercises
 This is an evolving list of bodyweight exercises I've created. The user may search for an exercise and click on it to get a detailed description of how to perform it and which muscle groups the exercise targets.
-![Exercises](./readme/exercisesView.gif)
+<video src="readme/exercisesView.mp4" controls autoplay loop muted playsinline width="640"></video>
+
 
 #### Workout Generation
 This is one of the most fleshed out parts of the app! The workout generation is based either on muscle groups the user specifies, or skills the user wants to work towards. The users abilities (taken from the Skill Progressions tab) are used to determine whether or not the user is capable of each exercise in the generation process.
-![Workout Generator](./readme/workoutView.gif)
+<video src="readme/workoutView.mp4" controls autoplay loop muted playsinline width="640"></video>
+
 
 #### Skill Progressions
 Skill progressions help the user track their progress, along with helping the algorithm determine which exercises the user is capable of. There are six areas to work towards:
@@ -23,11 +25,11 @@ Skill progressions help the user track their progress, along with helping the al
 * `verticalPull` (pull‑ups, front lever)
 * `legs` (squats, lunges, hinge, nordics)
 
-![Skill Progressions](./readme/progressions.gif)
+<video src="readme/Progressions.mp4" controls autoplay loop muted playsinline width="640"></video>
 
 #### Profile
 Very much a work in progress. The UI is there, but it's not hooked up to much.
-![Profile](./readme/profile.gif)
+<video src="readme/profile.mp4" controls autoplay loop muted playsinline width="640"></video>
 
 
 ## Tech Stack
