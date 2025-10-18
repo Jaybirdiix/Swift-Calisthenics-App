@@ -1151,24 +1151,24 @@ struct SkillProgressionsView: View {
 
                         // Tools / Export
                         // USEFUL FOR TESTING JSON EXPORTS !!!!!!
-                        ProgSectionCard(icon: "wrench.and.screwdriver.fill", title: "Tools") {
-                            HStack(spacing: 10) {
-                                Button("Copy Unlocked JSON") { copyUnlockedToClipboard() }
-                                Button("Print JSON") { printUnlockedToConsole() }
-                                Button("Save JSON to File") {
-                                    lastExportURL = writeUnlockedJSONToFile()
-                                }
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .tint(ProgBrandTheme.accent1)
-
-                            if let url = lastExportURL {
-                                Divider().opacity(0.15)
-                                Text("Saved to: \(url.lastPathComponent)")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
-                        }
+//                        ProgSectionCard(icon: "wrench.and.screwdriver.fill", title: "Tools") {
+//                            HStack(spacing: 10) {
+//                                Button("Copy Unlocked JSON") { copyUnlockedToClipboard() }
+//                                Button("Print JSON") { printUnlockedToConsole() }
+//                                Button("Save JSON to File") {
+//                                    lastExportURL = writeUnlockedJSONToFile()
+//                                }
+//                            }
+//                            .buttonStyle(.borderedProminent)
+//                            .tint(ProgBrandTheme.accent1)
+//
+//                            if let url = lastExportURL {
+//                                Divider().opacity(0.15)
+//                                Text("Saved to: \(url.lastPathComponent)")
+//                                    .font(.caption)
+//                                    .foregroundStyle(.secondary)
+//                            }
+//                        }
                         
 //                         Interactive tree for selected category
 //                        ProgSectionCard(icon: "tree", title: "Interactive Tree") {

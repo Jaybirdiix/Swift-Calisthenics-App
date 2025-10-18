@@ -1,36 +1,42 @@
-//
-//  README.md
-//  New Project
-//
-//  Created by Celeste van Dokkum on 10/14/25.
-//
+# Calicraft : a Motivational Calisthenics Workout Tracker & Generator (iOS)
 
-# Calisthenics Workout Generator (iOS)
+This is a (currently in development) Swift app that tracks your calisthenics progress over time and auto‑generates workouts tailored to the equipment you have available, your current abilities, and your goals. 
 
-A Swift/SwiftUI app that tracks your calisthenics progress over time and auto‑generates workouts tailored to the equipment you have available to you, your current abilities and your goals. 
+### Page Demos
 
+#### Exercises
+This is an evolving list of bodyweight exercises I've created. The user may search for an exercise and click on it to get a detailed description of how to perform it and which muscle groups the exercise targets.
+![Exercises](./readme/exercisesView.gif)
 
-gif of each page
+#### Workout Generation
+This is one of the most fleshed out parts of the app! The workout generation is based either on muscle groups the user specifies, or skills the user wants to work towards. The users abilities (taken from the Skill Progressions tab) are used to determine whether or not the user is capable of each exercise in the generation process.
+![Workout Generator](./readme/workoutView.gif)
 
-gif of transitioning between pages
+#### Skill Progressions
+Skill progressions help the user track their progress, along with helping the algorithm determine which exercises the user is capable of. There are six areas to work towards:
 
+**Categories**
+* `core`
+* `horizontalPush` (push‑ups, planche variants)
+* `horizontalPull` (rows)
+* `verticalPush` (HS push‑ups, pike presses)
+* `verticalPull` (pull‑ups, front lever)
+* `legs` (squats, lunges, hinge, nordics)
 
+![Skill Progressions](./readme/progressions.gif)
 
----
+#### Profile
+Very much a work in progress. The UI is there, but it's not hooked up to much.
+![Profile](./readme/profile.gif)
+
 
 ## Tech Stack
 
 * **Language**: Swift 5.9+
 * **UI**: SwiftUI (iOS 17+)
-* **State**: Observable/Environment models (unidirectional data flow)
-* **Persistence**: Core Data (SQLite) or SwiftData (toggleable)
-* **Scheduling**: BackgroundTasks (optional)
-* **Health**: HealthKit (optional; calories/HR import)
-* **Testing**: XCTest + SnapshotTesting
+* **API**: Python
+* **Persistence**: SwiftData
 
-> You can flip between **Core Data** and **SwiftData** by changing the `PersistenceMode` flag in `AppConfig.swift`.
-
----
 
 ## Project Structure
 
@@ -76,229 +82,71 @@ CalisthenicsApp/
 
 ---
 
-## 🧩 Domain Model
+## Workout Generation
+Workout Generation is handled with Python using ExpressAPI. I have written an algorithm that generates a workout tailored to the user's abilities and the muscles or skills they wish to target.
 
-```mermaid
-classDiagram
-  class Exercise {
-    +id: UUID
-    +name: String
-    +category: ExerciseCategory
-    +equipment: Set~Equipment~
-    +progressionKey: String? // e.g., "planche", "frontLever"
-    +difficultyScore: Double // 1–10 subjective baseline
-  }
-  class ExerciseCategory {
-    <<enum>>
-    core
-    horizontalPush
-    horizontalPull
-    verticalPush
-    verticalPull
-    legsPush
-    legsPull
-  }
-  class Session {
-    +id: UUID
-    +date: Date
-    +blocks: [Block]
-    +seed: UInt64
-  }
-  class Block {
-    +type: BlockType // warmup, skill, strength, accessory, cooldown
-    +items: [Prescription]
-  }
-  class Prescription {
-    +exerciseID: UUID
-    +sets: Int
-    +repsTime: RepsOrTime
-    +RIR: Int?
-    +tempo: String?
-  }
-```
+*Note:* There were previous iterations in which ai was used to generate workouts. However, on an Intel Mac, getting results was *incredibly* slow to the point where it wasn't feasible.
 
-**Equipment**: `rings`, `bar`, `parallettes`, `floor`, `bands`
-
-**Categories** (used by generator + analytics):
-
-* `core`
-* `horizontalPush` (push‑ups, planche variants)
-* `horizontalPull` (rows)
-* `verticalPush` (HS push‑ups, pike presses)
-* `verticalPull` (pull‑ups, front lever)
-* `legsPush` (squats/lunges)
-* `legsPull` (hinge/nordics)
-
----
-
-## ⚙️ Workout Generation (overview)
-
-1. **Constraints collected**: available time, equipment, focus categories, soreness, target difficulty band
-2. **Template selection**: e.g. `FullBody( Skill → StrengthA → StrengthB → Accessory )`
-3. **Candidate pool** filtered by **category** & **equipment**
-4. **Scoring** per exercise:
-
-   * **Fatigue budget** (recent work, soreness)
-   * **Progression readiness** (skill prerequisites met?)
-   * **Novelty** penalty to avoid repeats
-   * **User affinity** (liked/skipped)
-5. **Seeded tie‑break** with `seed` for reproducibility
-6. **Dose assignment** using a target **Session Difficulty Index (SDI)**
-7. **Validation**: ensure category coverage + RPE caps
-
-> See `Features/Generator/WorkoutGenerator.swift` for composable heuristics and the deterministic RNG wrapper.
-
----
-
-## 🗂️ Seed Data (excerpt)
-
+## Exercises.json excerpt
 ```json
-[
-  {
-    "id": "41c3…",
-    "name": "Pseudo Planche Push‑up",
-    "category": "horizontalPush",
-    "equipment": ["floor", "parallettes"],
-    "progressionKey": "planche",
-    "difficultyScore": 6.5
+{
+  "name": "Push Up",
+  "description": "Standard floor push-up with straight body line, elbows ~45° from torso, and full lockout at top.",
+  "difficulty": 3,
+  "muscles": {
+    "primary": [
+      "Pectoralis Major",
+      "Anterior Deltoid",
+      "Triceps Brachii"
+    ],
+    "secondary": [
+      "Serratus Anterior",
+      "Rectus Abdominis",
+      "Obliques"
+    ],
+    "tertiary": [
+      "Forearm Flexors",
+      "Forearm Extensors"
+    ]
   },
-  {
-    "id": "7f9a…",
-    "name": "Tuck Front Lever Hold",
-    "category": "verticalPull",
-    "equipment": ["bar", "rings"],
-    "progressionKey": "frontLever",
-    "difficultyScore": 6.0
-  }
-]
+  "reps": "10 / 15 / 20",
+  "requiredSkills": []
+}
 ```
 
 ---
 
-## 🚀 Getting Started
-
-### Requirements
-
-* macOS 13+
-* Xcode 15+
-* iOS 17+ target (adjust `IPHONEOS_DEPLOYMENT_TARGET` if needed)
-
-### Build & Run
-
-1. `git clone https://github.com/your‑org/calisthenics‑app.git`
-2. Open `CalisthenicsApp.xcodeproj` (or `.xcworkspace` if using packages)
-3. Select a simulator or your device, then **Run**
-
-### Configuration
-
-* **AppConfig.swift**: toggle persistence mode, HealthKit on/off, default generator template
-* **exercises.json**: add or edit exercises and categories
-* **seeds/**: put sample sessions for demo accounts
-
----
-
-## 🧪 Tests
-
-* `GeneratorTests` validate:
-
-  * category coverage constraints
-  * determinism under fixed seeds
-  * overload & deload schedule rules
-* Snapshot tests for key screens (optional)
-
-Run in Xcode (⌘‑U) or via CLI:
-
-```bash
-xcodebuild test \
-  -scheme CalisthenicsApp \
-  -destination 'platform=iOS Simulator,name=iPhone 15'
+### Running the App
+I run Calicraft with Xcode from the `Swift App` directory. In a separate terminal, I run this command on the simulator:
+```shell
+uvicorn api:app --reload --host 127.0.0.1 --port 8000
+```
+Or this one to send the app to my phone:
+```shell
+uvicorn api:app --reload --host 10.0.0.147 --port 3001
 ```
 
----
+## Currently in Progress
 
-## 🔒 Privacy
-
-* Local‑only by default. HealthKit is **opt‑in** and read‑only.
-* No analytics unless you enable the `AnalyticsProvider` and supply keys.
-
----
-
-## 🧭 Roadmap
-
-* [ ] Super‑set suggestions during plateau
-* [ ] Session “time box” auto‑rebalance
-* [ ] iCloud sync (CloudKit)
-* [ ] Export to CSV / Apple Numbers
-* [ ] Widgets + Live Activities
-* [ ] Coach voice prompts
-
----
-
-## 🤝 Contributing
-
-1. Fork the repo
-2. Create a feature branch: `git checkout -b feature/awesome`
-3. Commit changes with clear messages
-4. Open a PR describing your approach and screenshots
-
-Coding guidelines:
-
-* Prefer **expanded variable names** for clarity
-* Keep generator heuristics **pure** where possible (testable)
-* UI in SwiftUI; avoid UIKit unless necessary
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License — see `LICENSE` for details.
-
----
-
-## 📸 Screenshots (placeholders)
-
-* `Docs/Screenshots/dashboard.png`
-* `Docs/Screenshots/generator.png`
-* `Docs/Screenshots/skill‑tree.png`
-
----
-
-## 🙏 Acknowledgements
-          
-todo
-
-Essentials / easy
-- Add prerequisites to workout generation
+Essentials right now
 - Improve workout generation / make it a little smarter
+- Interactive workout mode (mark as complete)
+  - Click the number of reps you were able to complete
 
 Harder
-- Swapping out of exercises, ratings?
-- Click on exercise to pull up description
-- I’m injured button
+- Swapping out exercises for a choice of similar ones
+- Rating exercises to make favorites come up more often
+- Click on exercises to pull up the description page
+- I’m injured button: avoid particular muscle groups
+- Suggest exercises using available equipment
+  - **Equipment**: `rings`, `bar`, `parallettes`, `floor`, `bands`
+- Adding options to save and edit workouts
+  - Statistics over time
+- Linking this to the profile page
 
-MONGODB
-- Adding data
-- Accessing data
-- Setting up auth
-- Setting up user data
-- Linking everything together
-
-Calendar !
-
-Ongoing quests / achievements
-
-Long terms stats over time
-
-Interactive workout mode
-- Click the number of reps you were able to complete
-
-Opt:
-- Planche level etc
-- Add progress bars under horizontal push, vertical push, etc
-- Resources on form for each exercise
-
-
-Inspired by the Bodyweight Fitness community and classic calisthenics progressions. Thanks to contributors who provided exercise datasets and testing feedback.
-
-
-
+Optional:
+- Calendar of workouts
+- Ongoing quests / achievements
+- Long terms analytics
+- Level bars for each skill
+- Resources on good form for each exercise / skill
