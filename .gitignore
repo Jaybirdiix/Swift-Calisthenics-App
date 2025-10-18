@@ -1,0 +1,35 @@
+# --- Python / venvs ---
+.venv/
+venv/
+env/
+**/lib/python*/site-packages/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+build/
+*.xcuserdatad
+*.xcworkspace/xcuserdata/
+*.xcuserstate
+
+# SwiftPM
+.swiftpm/
+Packages/
+Package.resolved
+
+# CocoaPods (if used)
+Pods/
+
+# Editor snapshots / junk
+.history/
+readmeFiles/
+**/README_20*.md
