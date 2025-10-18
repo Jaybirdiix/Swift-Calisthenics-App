@@ -1,0 +1,72 @@
+{
+  "minutes": 40,
+  "blocks": [
+    {
+      "name": "warmup",
+      "items": [
+        {
+          "id": "hollow-body-hold",
+          "name": "Hollow Body Hold",
+          "sets": 1,
+          "dose": "3m",
+          "notes": "brace; breathe; neutral spine"
+        }
+      ]
+    },
+    {
+      "name": "skill",
+      "items": [
+        {
+          "id": "handstand-on-blocks-facing-down",
+          "name": "Handstand on Blocks (Facing Down)",
+          "sets": 3,
+          "dose": "40s",
+          "notes": "strict form; control"
+        }
+      ]
+    },
+    {
+      "name": "strength",
+      "items": [
+        {
+          "id": "archer-push-up",
+          "name": "Archer Push Up",
+          "sets": 3,
+          "dose": "6 reps",
+          "notes": "protract; lockout; neutral neck; prereq: Archer Push Up"
+        },
+        {
+          "id": "elbow-lever",
+          "name": "Elbow Lever",
+          "sets": 3,
+          "dose": "10s",
+          "notes": "full hang; scap pull; smooth; prereq: Elbow Lever"
+        }
+      ]
+    },
+    {
+      "name": "accessory",
+      "items": [
+        {
+          "id": "tiger-push-ups",
+          "name": "Tiger Push Ups",
+          "sets": 2,
+          "dose": "8 reps",
+          "notes": "protract; lockout; neutral neck"
+        }
+      ]
+    },
+    {
+      "name": "cooldown",
+      "items": [
+        {
+          "id": "arch-hold",
+          "name": "Arch Hold",
+          "sets": 1,
+          "dose": "3m",
+          "notes": "brace; breathe; neutral spine"
+        }
+      ]
+    }
+  ]
+}

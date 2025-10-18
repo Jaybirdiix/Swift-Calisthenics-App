@@ -1,0 +1,183 @@
+[
+  {
+    "name": "360 Push Up",
+    "description": "Explosive plyometric push-up where you launch off the floor and rotate 360° in the air before landing back into the next rep. Extremely advanced; prioritize safe landing and shoulder integrity.",
+    "difficulty": 8,
+    "muscles": {
+      "primary": [
+        "Pectoralis Major",
+        "Anterior Deltoid",
+        "Triceps Brachii"
+      ],
+      "secondary": [
+        "Serratus Anterior",
+        "Rectus Abdominis",
+        "Obliques"
+      ],
+      "tertiary": [
+        "Forearm Flexors",
+        "Forearm Extensors"
+      ]
+    },
+    "reps": "360 Push Up – 3 / 5 / 8",
+    "requiredSkills": [
+      "Clap Push Up",
+      "Archer Push Up"
+    ]
+  },
+  {
+    "name": "Advanced Tuck Planche",
+    "description": "Isometric planche progression with knees close to chest but hips opened relative to shoulders. Shoulders protracted and wrists under or slightly behind hips.",
+    "difficulty": 7,
+    "muscles": {
+      "primary": [
+        "Anterior Deltoid",
+        "Pectoralis Major",
+        "Triceps Brachii"
+      ],
+      "secondary": [
+        "Rectus Abdominis",
+        "Serratus Anterior"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors",
+        "Iliopsoas",
+        "Rectus Femoris",
+        "Sartorius"
+      ]
+    },
+    "reps": "Advanced Tuck Planche – 10s / 20s / 30s",
+    "requiredSkills": [
+      "Tuck Planche",
+      "Planche Lean",
+      "Pseudo Planche Push Up"
+    ]
+  },
+  {
+    "name": "Arch Hold",
+    "description": "Prone posterior-chain hold: squeeze glutes, lift chest, arms, and thighs off the floor while keeping neck neutral. The opposite of a hollow hold.",
+    "difficulty": 3,
+    "muscles": {
+      "primary": [
+        "Erector Spinae",
+        "Gluteus Maximus",
+        "Hamstrings"
+      ],
+      "secondary": [
+        "Lower Trapezius",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Calves"
+      ]
+    },
+    "reps": "Arch Hold – 20s / 30s / 40s",
+    "requiredSkills": []
+  },
+  {
+    "name": "Archer Pull Up",
+    "description": "Unilateral pull-up variation: pull toward one hand while the opposite arm remains extended, shifting most load to one side. Alternate sides each rep.",
+    "difficulty": 6,
+    "muscles": {
+      "primary": [
+        "Latissimus Dorsi",
+        "Biceps Brachii"
+      ],
+      "secondary": [
+        "Rhomboids",
+        "Middle Trapezius",
+        "Lower Trapezius"
+      ],
+      "tertiary": [
+        "Forearm Flexors",
+        "Forearm Extensors",
+        "Posterior Deltoid"
+      ]
+    },
+    "reps": "Archer Pull Up – 3 / 5 / 8",
+    "requiredSkills": [
+      "Pull Up"
+    ]
+  },
+  {
+    "name": "Archer Push Up",
+    "description": "Wide asymmetric push-up: one arm bends while the other remains extended, shifting most of the load to the bent side. Progression toward one-arm push-ups.",
+    "difficulty": 5,
+    "muscles": {
+      "primary": [
+        "Pectoralis Major",
+        "Anterior Deltoid",
+        "Triceps Brachii"
+      ],
+      "secondary": [
+        "Serratus Anterior",
+        "Rectus Abdominis",
+        "Obliques"
+      ],
+      "tertiary": [
+        "Forearm Flexors",
+        "Forearm Extensors"
+      ]
+    },
+    "reps": "Archer Push Up – 6 / 10 / 14",
+    "requiredSkills": [
+      "Archer Push Up"
+    ]
+  },
+  {
+    "name": "Back Lever",
+    "description": "Isometric hold on rings or bar with body facing down, hips extended, and shoulders in full extension. Keep a posterior pelvic tilt to protect the lower back.",
+    "difficulty": 7,
+    "muscles": {
+      "primary": [
+        "Latissimus Dorsi",
+        "Obliques",
+        "Rectus Abdominis",
+        "Transversus Abdominis"
+      ],
+      "secondary": [
+        "Gluteus Maximus",
+        "Gluteus Medius",
+        "Posterior Deltoid"
+      ],
+      "tertiary": [
+        "Forearm Extensors",
+        "Forearm Flexors"
+      ]
+    },
+    "reps": "Back Lever – 10s / 20s / 30s",
+    "requiredSkills": [
+      "Skin the Cat",
+      "Pull Up",
+      "Hollow Body Hold"
+    ]
+  },
+  {
+    "name": "Back Roll to Handstand",
+    "description": "Gymnastics skill: from a squat or pike, roll backward onto shoulders and use momentum plus a press to arrive in a handstand with locked elbows.",
+    "difficulty": 7,
+    "muscles": {
+      "primary": [
+        "Anterior Deltoid",
+        "Lateral Deltoid",
+        "Posterior Deltoid",
+        "Triceps Brachii",
+        "Upper Trapezius"
+      ],
+      "secondary": [
+        "Forearm Extensors",
+        "Forearm Flexors",
+        "Obliques",
+        "Rectus Abdominis",
+        "Transversus Abdominis"
+      ],
+      "tertiary": [
+        "Gluteus Maximus",
+        "Gluteus Medius"
+      ]
+    },
+    "reps": "Back Roll to Handstand – 3 / 5 / 8",
+    "requiredSkills": []
+  }
+]
