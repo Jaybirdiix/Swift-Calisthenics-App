@@ -10,72 +10,6 @@
 
 import SwiftUI
 
-// MARK: - Local theme tokens (avoid name collisions with WorkoutGeneratorView)
-private enum ListBrandTheme {
-    static let chipCorner: CGFloat = 8
-    static let cardCorner: CGFloat = 10
-    static let spacing: CGFloat = 16
-    static let gridSpacing: CGFloat = 12
-
-    static let pageBG = Color(uiColor: .systemGroupedBackground)
-    static let cardBG = Color(uiColor: .secondarySystemGroupedBackground)
-    static let separator = Color(uiColor: .separator)
-
-    static let accent1 = Color.indigo
-    static let accent2 = Color.blue
-    static var accentGradient: LinearGradient {
-        LinearGradient(colors: [accent1, accent2], startPoint: .leading, endPoint: .trailing)
-    }
-}
-
-// MARK: - Background (soft blobs)
-private struct BlobBackgroundList: View {
-    var body: some View {
-        ZStack {
-            ListBrandTheme.pageBG.ignoresSafeArea()
-
-            RadialGradient(
-                colors: [ListBrandTheme.accent1.opacity(0.22), .clear],
-                center: .topLeading, startRadius: 0, endRadius: 360
-            )
-            .blur(radius: 50)
-            .offset(x: -80, y: -120)
-
-            RadialGradient(
-                colors: [ListBrandTheme.accent2.opacity(0.18), .clear],
-                center: .bottomTrailing, startRadius: 0, endRadius: 420
-            )
-            .blur(radius: 60)
-            .offset(x: 100, y: 140)
-        }
-        .allowsHitTesting(false)
-        .accessibilityHidden(true)
-    }
-}
-
-// MARK: - Section Header
-private struct ListSectionHeader: View {
-    let title: String
-    let subtitle: String?
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
-                ListBrandTheme.accentGradient
-                    .frame(width: 3, height: 16)
-                    .clipShape(RoundedRectangle(cornerRadius: 1.5))
-                Text(title)
-                    .font(.title3.weight(.semibold))
-            }
-            if let subtitle = subtitle, !subtitle.isEmpty {
-                Text(subtitle)
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .padding(.horizontal, 16)
-    }
-}
 
 // MARK: - Exercise Card
 private struct ExerciseCard: View {
@@ -168,17 +102,15 @@ struct ExerciseListView: View {
     @ObservedObject var viewModel: WorkoutViewModel
     @State private var searchText = ""
 
-    // Adaptive grid that looks good on phone & iPad
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     private var columns: [GridItem] {
-        let count = (horizontalSizeClass == .compact) ? 1 : 2
-        return Array(repeating: GridItem(.flexible(), spacing: ListBrandTheme.gridSpacing), count: count)
+        Array(repeating: GridItem(.flexible(), spacing: ListBrandTheme.gridSpacing),
+              count: (horizontalSizeClass == .compact) ? 1 : 2)
     }
 
     private var filteredExercises: [Exercise] {
-        guard !searchText.isEmpty else { return viewModel.allExercises }
         let q = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        if q.isEmpty { return viewModel.allExercises }
+        guard !q.isEmpty else { return viewModel.allExercises }
         return viewModel.allExercises.filter {
             $0.name.localizedCaseInsensitiveContains(q) ||
             $0.description.localizedCaseInsensitiveContains(q)
@@ -186,56 +118,49 @@ struct ExerciseListView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                BlobBackgroundList()
+        ZStack {
+            BlobBackgroundList().allowsHitTesting(false)
 
-                ScrollView {
-                    VStack(spacing: ListBrandTheme.spacing) {
-                        // Header with count
-                        ListSectionHeader(
-                            title: "All Exercises",
-                            subtitle: subtitle
-                        )
-                        // Grid/List of cards
-                        if filteredExercises.isEmpty && !searchText.isEmpty {
-                            EmptyStateView(query: searchText)
-                        } else {
-                            LazyVGrid(columns: columns, spacing: ListBrandTheme.gridSpacing) {
-                                ForEach(filteredExercises) { exercise in
-                                    NavigationLink {
-                                        ExerciseDetailView(exercise: exercise)
-                                    } label: {
-                                        ExerciseCard(
-                                            name: exercise.name,
-                                            description: exercise.description
-                                        )
-                                    }
-                                    .buttonStyle(.plain)
+            ScrollView {
+                VStack(spacing: ListBrandTheme.spacing) {
+                    ListSectionHeader(title: "All Exercises", subtitle: subtitle)
+
+                    if filteredExercises.isEmpty && !searchText.isEmpty {
+                        EmptyStateView(query: searchText)
+                    } else {
+                        LazyVGrid(columns: columns, spacing: ListBrandTheme.gridSpacing) {
+                            ForEach(filteredExercises) { exercise in
+                                NavigationLink {
+                                    ExerciseDetailView(exercise: exercise)
+                                } label: {
+                                    ExerciseCard(name: exercise.name, description: exercise.description)
                                 }
+                                .buttonStyle(.plain)
                             }
-                            .padding(.horizontal, 16)
                         }
-
-                        Spacer(minLength: 24)
+                        .padding(.horizontal, 16)
                     }
-                    .padding(.vertical, ListBrandTheme.spacing)
+
+                    Spacer(minLength: 24)
                 }
-                .navigationTitle("Exercises")
-                .navigationBarTitleDisplayMode(.inline)
+                .padding(.vertical, ListBrandTheme.spacing)
             }
         }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+        .navigationTitle("Exercises")
+        .navigationBarTitleDisplayMode(.inline)
+
+        // 👇 attach searchable to the view that lives INSIDE the owning NavigationStack
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always),
+                    prompt: "Search exercises")
+        .onSubmit(of: .search) { /* optional: analytics */ }
+
         .animation(.spring(response: 0.28, dampingFraction: 0.92), value: filteredExercises.count)
     }
 
     private var subtitle: String {
         let total = viewModel.allExercises.count
         let showing = filteredExercises.count
-        if searchText.isEmpty {
-            return "\(total) total"
-        } else {
-            return "Showing \(showing) of \(total)"
-        }
+        return searchText.isEmpty ? "\(total) total" : "Showing \(showing) of \(total)"
     }
 }
+

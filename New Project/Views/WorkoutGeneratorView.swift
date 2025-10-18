@@ -9,23 +9,6 @@
 
 import SwiftUI
 
-// MARK: - Theme tokens
-private enum BrandTheme {
-    static let chipCorner: CGFloat = 8
-    static let cardCorner: CGFloat = 10
-    static let spacing: CGFloat = 16
-    static let gridSpacing: CGFloat = 12
-
-    static let pageBG = Color(uiColor: .systemGroupedBackground)
-    static let cardBG = Color(uiColor: .secondarySystemGroupedBackground)
-    static let separator = Color(uiColor: .separator)
-
-    static let accent1 = Color.indigo
-    static let accent2 = Color.blue
-    static var accentGradient: LinearGradient {
-        LinearGradient(colors: [accent1, accent2], startPoint: .leading, endPoint: .trailing)
-    }
-}
 // MARK: - Muscle grouping model (hard-coded)
 
 fileprivate enum MuscularRegion: String, CaseIterable, Hashable {
@@ -153,42 +136,38 @@ fileprivate struct MuscleGrouping {
 }
 
 
+// Replace this whole struct header: add `onGenerate` and REMOVE internal NavigationStack/NavigationLink.
 struct WorkoutGeneratorView: View {
     @ObservedObject var viewModel: WorkoutViewModel
+    var onGenerate: () -> Void = {}          // <-- NEW: parent-owned push
+
     @Namespace private var selectionNamespace
-    @State private var navigateToGenerated = false
+    @State private var navigateToGenerated = false  // no longer used; safe to delete
 
     private var canGenerate: Bool {
         !viewModel.selectedMuscles.isEmpty || !viewModel.selectedSkills.isEmpty
     }
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                // Background (soft blobs)
-                BrandedBlobBackground()
+        // ⛔️ REMOVE the internal `NavigationStack { ... }`
+        ZStack {
+            // Background (soft blobs) should never intercept touches
+            BrandedBlobBackground().allowsHitTesting(false)
 
-                ScrollView {
-                    VStack(spacing: BrandTheme.spacing) {
-                        IntroCard()
-                        MuscleGroupSection(viewModel: viewModel, selectionNamespace: selectionNamespace)
-                        SkillSection(viewModel: viewModel, selectionNamespace: selectionNamespace)
-                        Spacer(minLength: 60)
-                    }
-                    .padding(.vertical, BrandTheme.spacing)
+            ScrollView {
+                VStack(spacing: BrandTheme.spacing) {
+                    IntroCard()
+                    MuscleGroupSection(viewModel: viewModel, selectionNamespace: selectionNamespace)
+                    SkillSection(viewModel: viewModel, selectionNamespace: selectionNamespace)
+                    Spacer(minLength: 60)
                 }
-                .navigationTitle("Generate Workout")
-                .navigationBarTitleDisplayMode(.inline)
-
-                // Hidden NavigationLink driven by button
-                NavigationLink(
-                    destination: GeneratedWorkoutView(viewModel: viewModel),
-                    isActive: $navigateToGenerated
-                ) { EmptyView() }
-                .hidden()
+                .padding(.vertical, BrandTheme.spacing)
             }
         }
-        // Bottom action bar
+        // ⛔️ REMOVE the hidden NavigationLink ... it’s no longer needed
+        // .navigationTitle("Generate Workout")  // now set by the parent stack (GeneratorTab)
+
+        // Bottom action bar stays the same, except the button calls `onGenerate()`
         .safeAreaInset(edge: .bottom) {
             HStack(spacing: 12) {
                 Label {
@@ -202,7 +181,8 @@ struct WorkoutGeneratorView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 Button {
-                    navigateToGenerated = true
+                    // was: navigateToGenerated = true
+                    onGenerate()                     // <-- NEW: ask parent to push
                 } label: {
                     Text("Generate")
                         .fontWeight(.semibold)
@@ -230,34 +210,8 @@ struct WorkoutGeneratorView: View {
     }
 }
 
-// MARK: - Background (soft blobs)
-
-private struct BrandedBlobBackground: View {
-    var body: some View {
-        ZStack {
-            BrandTheme.pageBG.ignoresSafeArea()
-
-            RadialGradient(
-                colors: [BrandTheme.accent1.opacity(0.22), .clear],
-                center: .topLeading, startRadius: 0, endRadius: 360
-            )
-            .blur(radius: 50)
-            .offset(x: -80, y: -120)
-
-            RadialGradient(
-                colors: [BrandTheme.accent2.opacity(0.18), .clear],
-                center: .bottomTrailing, startRadius: 0, endRadius: 420
-            )
-            .blur(radius: 60)
-            .offset(x: 100, y: 140)
-        }
-        .allowsHitTesting(false)
-        .accessibilityHidden(true)
-    }
-}
 
 // MARK: - Intro
-
 private struct IntroCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -572,29 +526,6 @@ private struct SkillCard: View {
         .animation(.spring(response: 0.28, dampingFraction: 0.92), value: isSelected)
         .accessibilityLabel("\(title) skill card")
         .accessibilityHint(isSelected ? "Selected" : "Double tap to select this skill and deselect muscles")
-    }
-}
-
-// MARK: - Section Header
-
-private struct SectionHeader: View {
-    let title: String
-    let subtitle: String
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
-                BrandTheme.accentGradient
-                    .frame(width: 3, height: 16)
-                    .clipShape(RoundedRectangle(cornerRadius: 1.5))
-                Text(title)
-                    .font(.title3.weight(.semibold))
-            }
-            Text(subtitle)
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-        }
-        .padding(.horizontal, 16)
     }
 }
 

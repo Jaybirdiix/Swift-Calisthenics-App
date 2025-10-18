@@ -11,23 +11,6 @@
 
 import SwiftUI
 
-// MARK: - Theme (scoped to avoid collisions)
-private enum ProgBrandTheme {
-    static let cardCorner: CGFloat = 10
-    static let chipCorner: CGFloat = 8
-    static let spacing: CGFloat = 16
-    static let gridSpacing: CGFloat = 10
-
-    static let pageBG = Color(uiColor: .systemGroupedBackground)
-    static let cardBG = Color(uiColor: .secondarySystemGroupedBackground)
-    static let separator = Color(uiColor: .separator)
-
-    static let accent1 = Color.indigo
-    static let accent2 = Color.blue
-    static var accentGradient: LinearGradient {
-        LinearGradient(colors: [accent1, accent2], startPoint: .leading, endPoint: .trailing)
-    }
-}
 
 // MARK: - Background (soft blobs)
 private struct ProgBlobBackground: View {
@@ -51,49 +34,6 @@ private struct ProgBlobBackground: View {
         }
         .allowsHitTesting(false)
         .accessibilityHidden(true)
-    }
-}
-
-// MARK: - Card Shell
-private struct ProgSectionCard<Content: View>: View {
-    let icon: String
-    let title: String
-    @ViewBuilder var content: Content
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(spacing: 10) {
-                Image(systemName: icon)
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundStyle(ProgBrandTheme.accent1)
-                    .frame(width: 32, height: 32)
-                    .background(
-                        RoundedRectangle(cornerRadius: 6, style: .continuous)
-                            .fill(ProgBrandTheme.accent1.opacity(0.10))
-                    )
-                Text(title)
-                    .font(.headline)
-                Spacer(minLength: 4)
-            }
-
-            content
-
-            // Accent underline
-            ProgBrandTheme.accentGradient
-                .frame(height: 2)
-                .clipShape(RoundedRectangle(cornerRadius: 2))
-                .padding(.top, 2)
-        }
-        .padding(12)
-        .background(
-            RoundedRectangle(cornerRadius: ProgBrandTheme.cardCorner, style: .continuous)
-                .fill(ProgBrandTheme.cardBG)
-                .overlay(
-                    RoundedRectangle(cornerRadius: ProgBrandTheme.cardCorner, style: .continuous)
-                        .stroke(ProgBrandTheme.separator.opacity(0.35), lineWidth: 1)
-                )
-        )
-        .shadow(color: .black.opacity(0.04), radius: 4, y: 3)
     }
 }
 
@@ -1211,30 +1151,30 @@ struct SkillProgressionsView: View {
 
                         // Tools / Export
                         // USEFUL FOR TESTING JSON EXPORTS !!!!!!
-//                        ProgSectionCard(icon: "wrench.and.screwdriver.fill", title: "Tools") {
-//                            HStack(spacing: 10) {
-//                                Button("Copy Unlocked JSON") { copyUnlockedToClipboard() }
-//                                Button("Print JSON") { printUnlockedToConsole() }
-//                                Button("Save JSON to File") {
-//                                    lastExportURL = writeUnlockedJSONToFile()
-//                                }
-//                            }
-//                            .buttonStyle(.borderedProminent)
-//                            .tint(ProgBrandTheme.accent1)
-//
-//                            if let url = lastExportURL {
-//                                Divider().opacity(0.15)
-//                                Text("Saved to: \(url.lastPathComponent)")
-//                                    .font(.caption)
-//                                    .foregroundStyle(.secondary)
-//                            }
-//                        }
+                        ProgSectionCard(icon: "wrench.and.screwdriver.fill", title: "Tools") {
+                            HStack(spacing: 10) {
+                                Button("Copy Unlocked JSON") { copyUnlockedToClipboard() }
+                                Button("Print JSON") { printUnlockedToConsole() }
+                                Button("Save JSON to File") {
+                                    lastExportURL = writeUnlockedJSONToFile()
+                                }
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .tint(ProgBrandTheme.accent1)
+
+                            if let url = lastExportURL {
+                                Divider().opacity(0.15)
+                                Text("Saved to: \(url.lastPathComponent)")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
                         
-                        // Interactive tree for selected category
+//                         Interactive tree for selected category
 //                        ProgSectionCard(icon: "tree", title: "Interactive Tree") {
 //                            SkillTreeView(progressions: progressionsBinding(for: selectedCategory))
 //                        }
-                        // Interactive tree for selected category
+////                         Interactive tree for selected category
 //                        ProgSectionCard(icon: "tree", title: "Interactive Tree") {
 //                            SkillTreeView(progressions: progressionsBinding(for: selectedCategory))
 //                                .id(selectedCategory) // reset zoom/pan when switching category

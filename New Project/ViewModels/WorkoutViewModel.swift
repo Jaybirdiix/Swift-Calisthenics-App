@@ -8,12 +8,37 @@
 import Foundation
 import SwiftUI
 
+
+// to deal with slightly different names
+
+private func normalizeSkill(_ s: String) -> String {
+    var t = s.lowercased()
+    t = t.replacingOccurrences(of: "-", with: "-") // fix non-ASCII hyphen
+    t = t.replacingOccurrences(of: "[^a-z0-9]+", with: " ", options: .regularExpression)
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+    // aliases (mirror API)
+    switch t {
+    case "hollow body hold": return "hollow hold"
+    case "arch body hold":   return "arch hold"
+    case "pull-up":          return "pull up"
+    case "chin-up":          return "chin up"
+    default:                 return t
+    }
+}
+
+
 // MARK: - API config (dev vs prod)
 private enum API {
-    #if DEBUG
-    static let baseURL = URL(string: "http://127.0.0.1:8000")!
+//    #if DEBUG
+//    static let baseURL = URL(string: "http://127.0.0.1:8000")!
+//    #else
+//    static let baseURL = URL(string: "https://YOUR-PROD-URL")!
+//    #endif
+    
+    #if targetEnvironment(simulator)
+    static let baseURL = URL(string: "http://localhost:3001")!   // simulator only
     #else
-    static let baseURL = URL(string: "https://YOUR-PROD-URL")!
+    static let baseURL = URL(string: "http://10.0.0.147:3001")! // <-- your Mac’s IP or MacName.local
     #endif
 }
 
@@ -145,7 +170,7 @@ final class WorkoutViewModel: ObservableObject {
             let mapped: [Exercise] = dto.plan.map { item in
                 // try exact, then normalized name match
                 if let ref = allExercises.first(where: { $0.name == item.name }) {
-                    var e = ref; e.reps = item.reps; return e
+                    var e = ref; return e
                 } else if let ref = allExercises.first(where: { normalize($0.name) == normalize(item.name) }) {
                     var e = ref; e.reps = item.reps; return e
                 } else {
@@ -191,10 +216,19 @@ final class WorkoutViewModel: ObservableObject {
                 return total
             }
 
+//            let unlocked = unlockedSkillsFromProgressions()
+//            let eligibleExercises = allExercises.filter { ex in
+//                ex.requiredSkills.allSatisfy { unlocked.contains($0) }
+//            }
+            
             let unlocked = unlockedSkillsFromProgressions()
+            let unlockedCanon = Set(unlocked.map(normalizeSkill))
+
             let eligibleExercises = allExercises.filter { ex in
-                ex.requiredSkills.allSatisfy { unlocked.contains($0) }
+                let reqCanon = ex.requiredSkills.map(normalizeSkill)
+                return reqCanon.allSatisfy { unlockedCanon.contains($0) }
             }
+
 
             guard !eligibleExercises.isEmpty else {
                 print("⚠️ No eligible exercises available for current skill unlocks.")
@@ -223,22 +257,23 @@ final class WorkoutViewModel: ObservableObject {
         }
 
         // Fallback: muscle-based, filtered by unlocked skills
-        let unlocked = unlockedSkillsFromProgressions()
-        let muscleSet = Set(selectedMuscles)
-
-        let eligibleExercises = allExercises.filter { ex in
-            ex.requiredSkills.allSatisfy { unlocked.contains($0) }
-        }
-
-        generatedWorkout = eligibleExercises
-            .filter { ex in
-                muscleSet.isEmpty
-                ? true
-                : !Set(ex.muscles.primary + ex.muscles.secondary + ex.muscles.tertiary).isDisjoint(with: muscleSet)
-            }
-            .shuffled()
-            .prefix(count)
-            .map { $0 }
+        // removed fallback for testing
+//        let unlocked = unlockedSkillsFromProgressions()
+//        let muscleSet = Set(selectedMuscles)
+//
+//        let eligibleExercises = allExercises.filter { ex in
+//            ex.requiredSkills.allSatisfy { unlocked.contains($0) }
+//        }
+//
+//        generatedWorkout = eligibleExercises
+//            .filter { ex in
+//                muscleSet.isEmpty
+//                ? true
+//                : !Set(ex.muscles.primary + ex.muscles.secondary + ex.muscles.tertiary).isDisjoint(with: muscleSet)
+//            }
+//            .shuffled()
+//            .prefix(count)
+//            .map { $0 }
     }
 
     // MARK: - Grouping helpers (unchanged)

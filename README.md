@@ -9,36 +9,16 @@
 
 A Swift/SwiftUI app that tracks your calisthenics progress over time and auto‑generates workouts tailored to the equipment you have available to you, your current abilities and your goals. 
 
----
 
-## ✨ Features
+gif of each page
 
-* **Adaptive Workout Generator**
+gif of transitioning between pages
 
-  * Templates for push/pull/legs, upper/lower, full‑body, or skill‑focused days
-  * Progressive overload with deload weeks and session difficulty caps
-  * Equipment filters (rings, bar, floor only) and environment awareness
-  * Seeded randomness for reproducible plans (great for testing)
-* **Skill Trees & Prereqs**
 
-  * Define progressions (e.g., tuck → advanced tuck → straddle planche)
-  * Visual dependency graph & readiness estimates
-* **Granular Progress Tracking**
-
-  * Per‑exercise: best set, RIR/RPE, tempo, density
-  * Auto‑computed estimated max reps / time under tension trends
-* **Training Blocks**
-
-  * Warm‑up, skill, strength (x2), accessories, cooldown
-  * Time‑boxed or volume‑boxed sessions
-* **History & Analytics**
-
-  * Streaks, weekly volume by category, PR surfacing
-* **Privacy‑first, offline‑by‑default**
 
 ---
 
-## 🧱 Tech Stack
+## Tech Stack
 
 * **Language**: Swift 5.9+
 * **UI**: SwiftUI (iOS 17+)
@@ -52,7 +32,7 @@ A Swift/SwiftUI app that tracks your calisthenics progress over time and auto‑
 
 ---
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 CalisthenicsApp/
@@ -284,6 +264,41 @@ This project is licensed under the MIT License — see `LICENSE` for details.
 ---
 
 ## 🙏 Acknowledgements
+          
+todo
+
+Essentials / easy
+- Add prerequisites to workout generation
+- Improve workout generation / make it a little smarter
+
+Harder
+- Swapping out of exercises, ratings?
+- Click on exercise to pull up description
+- I’m injured button
+
+MONGODB
+- Adding data
+- Accessing data
+- Setting up auth
+- Setting up user data
+- Linking everything together
+
+Calendar !
+
+Ongoing quests / achievements
+
+Long terms stats over time
+
+Interactive workout mode
+- Click the number of reps you were able to complete
+
+Opt:
+- Planche level etc
+- Add progress bars under horizontal push, vertical push, etc
+- Resources on form for each exercise
+
 
 Inspired by the Bodyweight Fitness community and classic calisthenics progressions. Thanks to contributors who provided exercise datasets and testing feedback.
+
+
 

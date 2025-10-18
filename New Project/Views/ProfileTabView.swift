@@ -154,81 +154,6 @@ final class ProfileStore: ObservableObject {
     }
 }
 
-// MARK: - Brand
-private enum ProfBrand {
-    static let spacing: CGFloat = 16
-    static let cardCorner: CGFloat = 14
-    static let bg = Color(uiColor: .systemGroupedBackground)
-    static let cardBG = Color(uiColor: .secondarySystemGroupedBackground)
-    static let stroke = Color.black.opacity(0.08)
-    static let accent1 = Color.indigo
-    static let accent2 = Color.blue
-    static let accent3 = Color.purple
-
-    static var headerGradient: LinearGradient {
-        LinearGradient(gradient: Gradient(colors: [accent1, accent2]), startPoint: .topLeading, endPoint: .bottomTrailing)
-    }
-}
-
-// MARK: - Soft blob background
-private struct ProfileBackground: View {
-    var body: some View {
-        ZStack {
-            ProfBrand.bg.ignoresSafeArea()
-            RadialGradient(gradient: Gradient(colors: [ProfBrand.accent1.opacity(0.22), .clear]),
-                           center: .topLeading, startRadius: 0, endRadius: 380)
-            .blur(radius: 60).offset(x: -90, y: -140)
-
-            RadialGradient(gradient: Gradient(colors: [ProfBrand.accent2.opacity(0.18), .clear]),
-                           center: .bottomTrailing, startRadius: 0, endRadius: 420)
-            .blur(radius: 65).offset(x: 120, y: 160)
-        }
-        .allowsHitTesting(false)
-    }
-}
-
-// MARK: - Section card shell
-private struct ProfileCard<Content: View>: View {
-    let icon: String
-    let title: String
-    @ViewBuilder var content: Content
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(spacing: 10) {
-                Image(systemName: icon)
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundStyle(ProfBrand.accent1)
-                    .frame(width: 32, height: 32)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .fill(ProfBrand.accent1.opacity(0.12))
-                    )
-                Text(title).font(.headline)
-                Spacer(minLength: 4)
-            }
-
-            content
-
-            // Accent underline
-            ProfBrand.headerGradient
-                .frame(height: 2)
-                .clipShape(RoundedRectangle(cornerRadius: 2))
-                .padding(.top, 2)
-        }
-        .padding(14)
-        .background(
-            RoundedRectangle(cornerRadius: ProfBrand.cardCorner, style: .continuous)
-                .fill(ProfBrand.cardBG)
-                .overlay(
-                    RoundedRectangle(cornerRadius: ProfBrand.cardCorner, style: .continuous)
-                        .stroke(ProfBrand.stroke, lineWidth: 1)
-                )
-        )
-        .shadow(color: .black.opacity(0.05), radius: 6, y: 4)
-    }
-}
-
 // MARK: - XP Ring
 private struct XPRing: View {
     var level: Int
@@ -346,7 +271,7 @@ struct ProfileTabView: View {
                                 // Avatar + XP Ring
                                 let lvl = ProfileStore.levelFromXP(store.totalXP)
                                 ZStack {
-                                    ProfBrand.headerGradient
+                                    ProfBrand.accentGradient
                                         .clipShape(Circle())
                                         .frame(width: 68, height: 68)
                                         .overlay(Text("CV").font(.title2.weight(.bold)).foregroundStyle(.white))

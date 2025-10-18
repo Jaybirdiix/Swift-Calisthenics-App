@@ -263,51 +263,96 @@ private struct GlassTabBar: View {
 //    }
 //}
 
-// MARK: - ContentView (swanky)
+// MARK: - ContentView (persistent per-tab navigation)
 struct ContentView: View {
     @StateObject private var viewModel = WorkoutViewModel()
-    @State private var selection: MainTab = .workout   // default landing tab
-    @State private var barHeight: CGFloat = 0          // measured tab-bar height
 
-    // tweak if you still need a smidge more space above content
+    @State private var selection: MainTab = .workout
+    @State private var barHeight: CGFloat = 0
+
+    // One NavigationPath per tab (persists screen state in each tab)
+    @State private var exercisesPath = NavigationPath()
+    @State private var generatorPath = NavigationPath()
+    @State private var skillsPath    = NavigationPath()
+    @State private var profilePath   = NavigationPath()
+
     private let bottomReserveExtra: CGFloat = 1
 
     var body: some View {
-        NavigationStack {                       // top-level nav for titles
-            ZStack {
-                AppBlobBackground()
+        ZStack {
+            AppBlobBackground() // already .allowsHitTesting(false)
 
-                // Main content switches per tab
-                Group {
-                    switch selection {
-                    case .exercises:
-                        ExerciseListView(viewModel: viewModel)
-                            .navigationTitle("Exercises")
-                    case .workout:
-                        WorkoutGeneratorView(viewModel: viewModel)
-                            .navigationTitle("Generate Workout")
-                    case .skills:
-                        SkillProgressionsView()
-                            .navigationTitle("Skill Lists")
-                    case .profile:
-                        ProfileTabView()
-                            .navigationTitle("Profile")
+            // --- EXERCISES TAB STACK ---
+            NavigationStack(path: $exercisesPath) {
+                ExerciseListView(viewModel: viewModel)
+                    .navigationTitle("Exercises")
+                    .modifier(NavChrome())
+            }
+            .opacity(selection == .exercises ? 1 : 0)
+            .allowsHitTesting(selection == .exercises)
+            .zIndex(selection == .exercises ? 1 : 0)
+
+            // --- GENERATOR TAB STACK (pushes GeneratedWorkoutView) ---
+            NavigationStack(path: $generatorPath) {
+                WorkoutGeneratorView(
+                    viewModel: viewModel,
+                    onGenerate: { generatorPath.append(GeneratorRoute.generated) } // push
+                )
+                .navigationTitle("Generate Workout")
+                .modifier(NavChrome())
+                .navigationDestination(for: GeneratorRoute.self) { route in
+                    switch route {
+                    case .generated:
+                        GeneratedWorkoutView(viewModel: viewModel)
                     }
                 }
             }
-            .toolbarBackground(.visible, for: .navigationBar)
-            .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
-            // .toolbarColorScheme(.automatic, for: .navigationBar)
-            .toolbarColorScheme(nil, for: .navigationBar)     // follow system (automatic)
-            .navigationBarTitleDisplayMode(.inline)
+            .opacity(selection == .workout ? 1 : 0)
+            .allowsHitTesting(selection == .workout)
+            .zIndex(selection == .workout ? 1 : 0)
+
+            // --- SKILLS TAB STACK ---
+            NavigationStack(path: $skillsPath) {
+                SkillProgressionsView()
+                    .navigationTitle("Skill Lists")
+                    .modifier(NavChrome())
+            }
+            .opacity(selection == .skills ? 1 : 0)
+            .allowsHitTesting(selection == .skills)
+            .zIndex(selection == .skills ? 1 : 0)
+
+            // --- PROFILE TAB STACK ---
+            NavigationStack(path: $profilePath) {
+                ProfileTabView()
+                    .navigationTitle("Profile")
+                    .modifier(NavChrome())
+            }
+            .opacity(selection == .profile ? 1 : 0)
+            .allowsHitTesting(selection == .profile)
+            .zIndex(selection == .profile ? 1 : 0)
         }
-        // Reserve space so content never hides under the docked bar
+        // Keep content above your docked bar
         .padding(.bottom, barHeight + bottomReserveExtra)
         .onPreferenceChange(BarHeightKey.self) { barHeight = $0 }
 
-        // The docked bar itself
+        // Your custom glass tab bar (unchanged)
         .safeAreaInset(edge: .bottom, spacing: 0) {
             GlassTabBar(selection: $selection)
         }
+        // (optional) animate tab switches a bit
+        .animation(.easeInOut(duration: 0.18), value: selection)
     }
 }
+
+// Consistent nav styling per stack
+private struct NavChrome: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
+            .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+// For programmatic push inside the Generator tab
+enum GeneratorRoute: Hashable { case generated }

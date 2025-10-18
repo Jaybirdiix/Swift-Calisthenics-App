@@ -1,41 +1,5 @@
 import SwiftUI
 
-// MARK: - Local theme
-fileprivate enum GenTheme {
-    static let corner: CGFloat = 10
-    static let chipCorner: CGFloat = 8
-    static let spacing: CGFloat = 16
-
-    static let pageBG = Color(uiColor: .systemGroupedBackground)
-    static let cardBG = Color(uiColor: .secondarySystemGroupedBackground)
-    static let separator = Color(uiColor: .separator)
-
-    static let accent1 = Color.indigo
-    static let accent2 = Color.blue
-    static var accentGradient: LinearGradient {
-        LinearGradient(colors: [accent1, accent2], startPoint: .leading, endPoint: .trailing)
-    }
-}
-
-// MARK: - Background blobs
-fileprivate struct BlobBackground: View {
-    var body: some View {
-        ZStack {
-            GenTheme.pageBG.ignoresSafeArea()
-            RadialGradient(colors: [GenTheme.accent1.opacity(0.22), .clear],
-                           center: .topLeading, startRadius: 0, endRadius: 360)
-                .blur(radius: 50)
-                .offset(x: -80, y: -120)
-            RadialGradient(colors: [GenTheme.accent2.opacity(0.18), .clear],
-                           center: .bottomTrailing, startRadius: 0, endRadius: 420)
-                .blur(radius: 60)
-                .offset(x: 100, y: 140)
-        }
-        .allowsHitTesting(false)
-        .accessibilityHidden(true)
-    }
-}
-
 // MARK: - View
 struct GeneratedWorkoutView: View {
     @ObservedObject var viewModel: WorkoutViewModel
@@ -270,25 +234,6 @@ fileprivate struct TipsCard: View {
 
 // MARK: - Components
 
-fileprivate struct MetricTile: View {
-    let label: String
-    let value: String
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(value).font(.title3.weight(.semibold))
-            Text(label).font(.footnote).foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.vertical, 10)
-        .padding(.horizontal, 12)
-        .background(
-            RoundedRectangle(cornerRadius: GenTheme.chipCorner)
-                .fill(GenTheme.pageBG)
-                .overlay(RoundedRectangle(cornerRadius: GenTheme.chipCorner).stroke(GenTheme.separator.opacity(0.35), lineWidth: 1))
-        )
-    }
-}
-
 fileprivate struct ExerciseCard: View {
     let name: String
     let reps: String?
@@ -322,16 +267,6 @@ fileprivate struct ExerciseCard: View {
     }
 }
 
-fileprivate struct TagChip: View {
-    let text: String
-    var body: some View {
-        Text(text)
-            .font(.caption)
-            .padding(.horizontal, 8).padding(.vertical, 4)
-            .background(RoundedRectangle(cornerRadius: GenTheme.chipCorner).fill(GenTheme.accent1.opacity(0.10)))
-            .overlay(RoundedRectangle(cornerRadius: GenTheme.chipCorner).stroke(GenTheme.accent1.opacity(0.6), lineWidth: 1))
-    }
-}
 
 fileprivate struct FocusBarRow: View {
     let label: String
