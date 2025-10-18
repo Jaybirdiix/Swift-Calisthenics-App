@@ -2,18 +2,20 @@
 
 This is a (currently in development) Swift app that tracks your calisthenics progress over time and auto‑generates workouts tailored to the equipment you have available, your current abilities, and your goals. 
 
-### Page Demos
+## Demo
+
+Youtube link to demo:
+
+[Watch the demo here!](https://youtube.com/shorts/nW54duyomX0)
 
 #### Exercises
 This is an evolving list of bodyweight exercises I've created. The user may search for an exercise and click on it to get a detailed description of how to perform it and which muscle groups the exercise targets.
 <!-- <video src="readme/exercisesView.mp4" controls autoplay loop muted playsinline width="640"></video> -->
-[![Watch demo](readme/thumb.png)](readme/exercisesView.mp4)
 
 
 #### Workout Generation
 This is one of the most fleshed out parts of the app! The workout generation is based either on muscle groups the user specifies, or skills the user wants to work towards. The users abilities (taken from the Skill Progressions tab) are used to determine whether or not the user is capable of each exercise in the generation process.
 <!-- <video src="readme/workoutView.mp4" controls autoplay loop muted playsinline width="640"></video> -->
-[![Watch demo](readme/thumb.png)](readme/workoutView.mp4)
 
 #### Skill Progressions
 Skill progressions help the user track their progress, along with helping the algorithm determine which exercises the user is capable of. There are six areas to work towards:
@@ -27,12 +29,10 @@ Skill progressions help the user track their progress, along with helping the al
 * `legs` (squats, lunges, hinge, nordics)
 
 <!-- <video src="readme/Progressions.mp4" controls autoplay loop muted playsinline width="640"></video> -->
-[![Watch demo](readme/thumb.png)](readme/Progressions.mp4)
 
 #### Profile
 Very much a work in progress. The UI is there, but it's not hooked up to much.
 <!-- <video src="readme/profile.mp4" controls autoplay loop muted playsinline width="640"></video> -->
-[![Watch demo](readme/thumb.png)](readme/profile.mp4)
 
 ## Tech Stack
 
