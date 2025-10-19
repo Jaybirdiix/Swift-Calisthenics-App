@@ -154,3 +154,9 @@ Optional:
 - Long terms analytics
 - Level bars for each skill
 - Resources on good form for each exercise / skill
+
+## AI assistance & authorship (disclosure)
+
+I built this project using extensive AI assistance for Swift code and UI scaffolding.
+
+I designed and implemented the Python workout generation algorithm, defining which metrics are important in workouts and providing randomization while still targeting key muscles / skills. I also designed the system structure / tech stack, how data is stored / recorded / retrieved, and the user interface. Additonally, I edited innacurate exercise information, and defined key skills and prerequisites. I used AI mostly for graphic design / frontend and to implement Swift components such that information was displayed in the way I wanted. I reviewed, adapted, and integrated all AI-generated code to match the app’s requirements and architecture. Any bugs are mine.
